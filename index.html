@@ -1,630 +1,569 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Isabella!</title>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Canvas Confetti -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Isabella! 🎂</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            heading: ['Fredoka', 'sans-serif'],
-            body: ['Quicksand', 'sans-serif'],
-          },
-          colors: {
-            brandPink: '#FF85A1',
-            brandSoftPink: '#FBB1BD',
-            brandPurple: '#9D4EDD',
-            brandYellow: '#FFD166',
-            brandPeach: '#FF9F1C',
-            brandLightBg: '#FFF0F5'
-          }
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        roseGold: {
+                            50: '#fff5f7',
+                            100: '#ffe6ec',
+                            200: '#fecdd6',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#e11d48',
+                            600: '#be123c',
+                        },
+                        cream: '#fffdfa'
+                    },
+                    fontFamily: {
+                        cursive: ['Dancing Script', 'cursive'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
-
-  <style>
-    body { font-family: 'Quicksand', sans-serif; background-color: #FFF0F5; }
-    h1, h2, h3, .font-heading { font-family: 'Fredoka', sans-serif; }
-    
-    /* Candle Flame Animation */
-    .flame {
-      background: radial-gradient(ellipse at bottom, #FFD166 0%, #FF9F1C 60%, #E63946 100%);
-      border-radius: 50% 50% 20% 20%;
-      box-shadow: 0 0 15px #FFD166, 0 0 25px #FF9F1C;
-      animation: flicker 1.2s infinite ease-in-out alternate;
-    }
-    @keyframes flicker {
-      0% { transform: scale(1) rotate(-2deg); opacity: 0.9; }
-      50% { transform: scale(1.1) rotate(2deg); opacity: 1; }
-      100% { transform: scale(0.95) rotate(-1deg); opacity: 0.85; }
-    }
-    .extinguished {
-      display: none !important;
-    }
-    
-    /* Smoke effect when candles are blown */
-    .smoke {
-      position: absolute;
-      width: 8px;
-      height: 20px;
-      background: rgba(200, 200, 200, 0.6);
-      border-radius: 10px;
-      filter: blur(4px);
-      animation: rise 1.5s forwards ease-out;
-    }
-    @keyframes rise {
-      0% { transform: translateY(0) scale(1); opacity: 0.8; }
-      100% { transform: translateY(-40px) scale(2.5); opacity: 0; }
-    }
-  </style>
+    </script>
+    <style>
+        .glow-effect {
+            box-shadow: 0 0 25px rgba(251, 113, 133, 0.4);
+        }
+        .flame-animation {
+            animation: flicker 0.8s infinite alternate ease-in-out;
+            transform-origin: center bottom;
+        }
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-2deg); opacity: 0.9; }
+            50% { transform: scale(1.1) rotate(2deg); opacity: 1; filter: drop-shadow(0 0 8px #ff9e00); }
+            100% { transform: scale(0.95) rotate(-1deg); opacity: 0.85; }
+        }
+        .smoke-animation {
+            animation: rise 1.5s forwards ease-out;
+        }
+        @keyframes rise {
+            0% { opacity: 0.8; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-40px) scale(2.5); }
+        }
+    </style>
 </head>
-<body class="text-slate-800 min-h-screen flex flex-col justify-between selection:bg-brandPink selection:text-white">
+<body class="bg-gradient-to-b from-roseGold-50 via-cream to-roseGold-100 text-slate-800 font-sans min-h-screen pb-16 selection:bg-roseGold-200">
 
-  <!-- Floating Audio & Controls -->
-  <div class="fixed top-4 right-4 z-50 flex items-center gap-2">
-    <button id="musicToggle" class="bg-white/90 backdrop-blur shadow-lg hover:bg-white text-slate-700 p-3 rounded-full transition flex items-center justify-center border border-pink-200" title="Toggle Happy Birthday Music">
-      <i data-lucide="music" class="w-5 h-5 text-brandPink"></i>
-    </button>
-    <button id="confettiBtn" class="bg-brandPink hover:bg-pink-600 text-white p-3 rounded-full shadow-lg transition flex items-center justify-center" title="Surprise Confetti!">
-      <i data-lucide="sparkles" class="w-5 h-5"></i>
-    </button>
-  </div>
+    <!-- Header / Hero Section -->
+    <header class="relative text-center pt-12 pb-8 px-4 overflow-hidden">
+        <div class="max-w-4xl mx-auto">
+            <span class="inline-block px-4 py-1.5 bg-roseGold-100 text-roseGold-600 rounded-full text-sm font-semibold tracking-wide uppercase mb-3 shadow-sm border border-roseGold-200">
+                ✨ October 27th Celebration ✨
+            </span>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight font-cursive drop-shadow-sm mb-2">
+                Happy Birthday, Isabella! ❤️
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-medium">
+                Celebrating all the beautiful memories, laughter, and incredible milestones along the way!
+            </p>
 
-  <!-- Hero Section -->
-  <header class="relative overflow-hidden bg-gradient-to-b from-pink-200 via-purple-100 to-brandLightBg pt-16 pb-12 px-4 text-center">
-    <div class="max-w-4xl mx-auto relative z-10">
-      <span class="inline-block bg-white/80 backdrop-blur px-4 py-1.5 rounded-full text-brandPink font-bold text-sm tracking-wide shadow-sm mb-4 border border-pink-200">
-        🎉 October 27th Birthday Special 🎉
-      </span>
-      <h1 class="text-5xl md:text-7xl font-bold text-slate-800 tracking-tight mb-4">
-        Happy Birthday, <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandPink to-brandPurple">Isabella!</span>
-      </h1>
-      <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-medium">
-        Celebrating another wonderful year of joy, growth, and priceless memories.
-      </p>
-
-      <!-- Countdown Widget -->
-      <div class="mt-8 inline-flex gap-3 md:gap-6 bg-white/80 backdrop-blur p-4 md:p-6 rounded-3xl shadow-xl border border-pink-100">
-        <div class="text-center px-2">
-          <span id="cd-days" class="block text-3xl md:text-5xl font-bold text-brandPink font-heading">00</span>
-          <span class="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">Days</span>
+            <!-- Countdown Timer -->
+            <div class="mt-8 grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-roseGold-100">
+                <div class="text-center">
+                    <span id="cd-days" class="block text-2xl sm:text-3xl font-extrabold text-roseGold-500">00</span>
+                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Days</span>
+                </div>
+                <div class="text-center">
+                    <span id="cd-hours" class="block text-2xl sm:text-3xl font-extrabold text-roseGold-500">00</span>
+                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Hours</span>
+                </div>
+                <div class="text-center">
+                    <span id="cd-minutes" class="block text-2xl sm:text-3xl font-extrabold text-roseGold-500">00</span>
+                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Mins</span>
+                </div>
+                <div class="text-center">
+                    <span id="cd-seconds" class="block text-2xl sm:text-3xl font-extrabold text-roseGold-500">00</span>
+                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Secs</span>
+                </div>
+            </div>
         </div>
-        <div class="text-3xl md:text-5xl font-bold text-pink-300 font-heading">:</div>
-        <div class="text-center px-2">
-          <span id="cd-hours" class="block text-3xl md:text-5xl font-bold text-brandPink font-heading">00</span>
-          <span class="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">Hours</span>
-        </div>
-        <div class="text-3xl md:text-5xl font-bold text-pink-300 font-heading">:</div>
-        <div class="text-center px-2">
-          <span id="cd-minutes" class="block text-3xl md:text-5xl font-bold text-brandPink font-heading">00</span>
-          <span class="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">Mins</span>
-        </div>
-        <div class="text-3xl md:text-5xl font-bold text-pink-300 font-heading">:</div>
-        <div class="text-center px-2">
-          <span id="cd-seconds" class="block text-3xl md:text-5xl font-bold text-brandPink font-heading">00</span>
-          <span class="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">Secs</span>
-        </div>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <main class="max-w-5xl mx-auto px-4 py-8 space-y-16 w-full">
+    <!-- Interactive Birthday Cake & Candle Blowing -->
+    <section class="max-w-2xl mx-auto my-8 px-4 text-center">
+        <div class="bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-roseGold-100 glow-effect relative overflow-hidden">
+            <h2 class="text-2xl font-bold text-slate-800 mb-2">Make a Birthday Wish! 🎂</h2>
+            <p class="text-slate-500 text-sm mb-6">Click or tap the flame on the candle to blow it out!</p>
 
-    <!-- Father's Birthday Greeting Card -->
-    <section class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-pink-100 text-center relative overflow-hidden">
-      <div class="absolute -top-10 -right-10 w-32 h-32 bg-pink-100 rounded-full blur-2xl"></div>
-      <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-purple-100 rounded-full blur-2xl"></div>
-      <div class="relative z-10 max-w-3xl mx-auto space-y-4">
-        <i data-lucide="heart" class="w-12 h-12 text-brandPink mx-auto fill-brandPink/20"></i>
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-800">To My Wonderful Daughter, Isabella!</h2>
-        <p class="text-slate-600 text-lg md:text-xl leading-relaxed">
-          Since you came into my life on October 27th, every year has been an incredible journey. Seeing you grow, learn, and fill my world with joy is the greatest gift. I'm so proud of the person you are becoming. I love you more than words can say.
+            <div class="relative w-48 h-48 mx-auto my-4 flex flex-col items-center justify-end">
+                <!-- Flame -->
+                <div id="candle-flame" onclick="blowOutCandle()" class="flame-animation cursor-pointer z-20 mb-[-6px]">
+                    <div class="w-6 h-8 bg-amber-400 rounded-full blur-[1px] relative flex items-center justify-center">
+                        <div class="w-3 h-5 bg-yellow-100 rounded-full"></div>
+                    </div>
+                </div>
+                
+                <!-- Smoke (Hidden initial) -->
+                <div id="candle-smoke" class="hidden absolute top-4 z-20">
+                    <i class="fa-solid fa-cloud text-slate-300 text-2xl smoke-animation"></i>
+                </div>
+
+                <!-- Candle Wick & Body -->
+                <div class="w-1.5 h-4 bg-slate-700 z-10"></div>
+                <div class="w-6 h-16 bg-gradient-to-r from-roseGold-300 via-roseGold-200 to-roseGold-300 rounded-t-sm shadow-inner z-10 border-b-2 border-roseGold-400"></div>
+
+                <!-- Birthday Cake Layers -->
+                <div class="w-36 h-12 bg-roseGold-100 rounded-t-2xl border-b-4 border-roseGold-200 shadow-md relative overflow-hidden flex items-center justify-center">
+                    <div class="absolute inset-x-0 top-0 h-3 bg-white/60 rounded-b-full"></div>
+                    <span class="text-xs font-semibold text-roseGold-500 tracking-widest uppercase">Isabella</span>
+                </div>
+                <div class="w-48 h-14 bg-amber-50 rounded-t-xl shadow-lg relative border-b-8 border-amber-100 flex items-center justify-center">
+                    <div class="absolute inset-x-0 top-0 h-4 bg-roseGold-200/50 rounded-b-full"></div>
+                    <span class="text-xs text-amber-800/40">🎂 ✨ 🎂</span>
+                </div>
+            </div>
+
+            <!-- Interactive Status Button -->
+            <button id="blow-btn" onclick="blowOutCandle()" class="mt-4 px-6 py-2.5 bg-roseGold-500 hover:bg-roseGold-600 text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0">
+                <i class="fa-solid fa-wind mr-2"></i> Blow Out Candle
+            </button>
+        </div>
+    </section>
+
+    <!-- 10 Memory Cards Timeline Section -->
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <h2 class="text-3xl font-extrabold text-slate-900 text-center mb-10 font-cursive text-4xl">
+            10 Precious Memories & Milestones 📸
+        </h2>
+
+        <div class="space-y-12">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
+                <div class="mb-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #1</span>
+                    <h3 class="text-xl font-bold text-slate-800 mt-1">Baby Steps & Early Smiles</h3>
+                    <p class="text-slate-600 text-sm mt-1">Always bringing pure joy, laughter, and sunshine into our lives right from the start.</p>
+                </div>
+                <div class="rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 max-h-[500px]">
+                    <img src="Photo1.jpg" alt="Memory 1" class="w-full h-full object-contain mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo1.jpg+Not+Found';">
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
+                <div class="mb-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #2</span>
+                    <h3 class="text-xl font-bold text-slate-800 mt-1">Growing Up & Exploring</h3>
+                    <p class="text-slate-600 text-sm mt-1">Curious, adventurous, and always discovering new things with a big bright smile.</p>
+                </div>
+                <div class="rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 max-h-[500px]">
+                    <img src="Photo2.jpg" alt="Memory 2" class="w-full h-full object-contain mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo2.jpg+Not+Found';">
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
+                <div class="mb-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #3</span>
+                    <h3 class="text-xl font-bold text-slate-800 mt-1">School Days & Accomplishments</h3>
+                    <p class="text-slate-600 text-sm mt-1">Working hard, learning, making great friends, and making us prouder every single day.</p>
+                </div>
+                <div class="rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 max-h-[500px]">
+                    <img src="Photo3.jpg" alt="Memory 3" class="w-full h-full object-contain mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo3.jpg+Not+Found';">
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
+                <div class="mb-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #4</span>
+                    <h3 class="text-xl font-bold text-slate-800 mt-1">Family Vacations & Adventures</h3>
+                    <p class="text-slate-600 text-sm mt-1">Making unforgettable memories on trips, laughing together, and enjoying special family moments.</p>
+                </div>
+                <div class="rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 max-h-[500px]">
+                    <img src="Photo4.jpg" alt="Memory 4" class="w-full h-full object-contain mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo4.jpg+Not+Found';">
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
+                <div class="mb-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #5</span>
+                    <h3 class="text-xl font-bold text-slate-800 mt-1">Special Holidays & Celebrations</h3>
+                    <p class="text-slate-600 text-sm mt-1">Lighting up every holiday and family gathering with your warmth and vibrant energy.</p>
+                </div>
+                <div class="rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 max-h-[500px]">
+                    <img src="Photo5.jpg" alt="Memory 5" class="w-full h-full object-contain mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo5.jpg+Not+Found';">
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
+                <div class="mb-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #6</span>
+                    <h3 class="text-xl font-bold text-slate-800 mt-1">Passions & Favorite Hobbies</h3>
+                    <p class="text-slate-600 text-sm mt-1">Diving into creative projects, sports, and hobbies with endless passion and dedication.</p>
+                </div>
+                <div class="rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 max-h-[500px]">
+                    <img src="Photo6.jpg" alt="Memory 6" class="w-full h-full object-contain mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo6.jpg+Not+Found';">
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
+                <div class="mb-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #7</span>
+                    <h3 class="text-xl font-bold text-slate-800 mt-1">Unforgettable Good Times</h3>
+                    <p class="text-slate-600 text-sm mt-1">The spontaneous fun, jokes, and memorable days that we will treasure forever.</p>
+                </div>
+                <div class="rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 max-h-[500px]">
+                    <img src="Photo7.jpg" alt="Memory 7" class="w-full h-full object-contain mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo7.jpg+Not+Found';">
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
+                <div class="mb-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #8</span>
+                    <h3 class="text-xl font-bold text-slate-800 mt-1">Kindness & Caring Heart</h3>
+                    <p class="text-slate-600 text-sm mt-1">Always showing so much empathy, love, and support to everyone around you.</p>
+                </div>
+                <div class="rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 max-h-[500px]">
+                    <img src="Photo8.jpg" alt="Memory 8" class="w-full h-full object-contain mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo8.jpg+Not+Found';">
+                </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
+                <div class="mb-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #9</span>
+                    <h3 class="text-xl font-bold text-slate-800 mt-1">Shining Bright & Inspiring Us</h3>
+                    <p class="text-slate-600 text-sm mt-1">Stepping into every new chapter with strength, kindness, and unbelievable graceful confidence.</p>
+                </div>
+                <div class="rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 max-h-[500px]">
+                    <img src="Photo9.jpg" alt="Memory 9" class="w-full h-full object-contain mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo9.jpg+Not+Found';">
+                </div>
+            </div>
+
+            <!-- Card 10 -->
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
+                <div class="mb-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #10</span>
+                    <h3 class="text-xl font-bold text-slate-800 mt-1">Here’s to Your Next Chapter!</h3>
+                    <p class="text-slate-600 text-sm mt-1">May this coming year bring endless opportunities, incredible success, happiness, and love.</p>
+                </div>
+                <div class="rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 max-h-[500px]">
+                    <img src="Photo10.jpg" alt="Memory 10" class="w-full h-full object-contain mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo10.jpg+Not+Found';">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Interactive Friends & Family Guestbook Section -->
+    <section class="max-w-4xl mx-auto px-4 my-12">
+        <div class="bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-2xl border border-roseGold-100">
+            <div class="text-center max-w-xl mx-auto mb-8">
+                <span class="inline-block px-3 py-1 bg-roseGold-100 text-roseGold-600 rounded-full text-xs font-bold tracking-wider uppercase mb-2">
+                    💌 Guestbook Wall
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-cursive">
+                    Leave a Birthday Greeting for Isabella!
+                </h2>
+                <p class="text-slate-500 text-sm mt-1">
+                    Share your birthday wishes, favorite memories, or words of love.
+                </p>
+            </div>
+
+            <!-- Submission Form -->
+            <form id="greeting-form" onsubmit="handleGreetingSubmit(event)" class="bg-roseGold-50/60 p-4 sm:p-6 rounded-2xl border border-roseGold-200/60 mb-10">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="sender-name" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Your Name</label>
+                        <input type="text" id="sender-name" required placeholder="e.g. Sarah & Alex" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-roseGold-400 bg-white text-slate-800 text-sm">
+                    </div>
+                    <div>
+                        <label for="sender-relation" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Relationship / Title (Optional)</label>
+                        <input type="text" id="sender-relation" placeholder="e.g. Bestie, Cousin, Aunt" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-roseGold-400 bg-white text-slate-800 text-sm">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="greeting-msg" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Your Birthday Message</label>
+                    <textarea id="greeting-msg" required rows="3" placeholder="Wishing you the happiest birthday Isabella!..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-roseGold-400 bg-white text-slate-800 text-sm resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-roseGold-500 hover:bg-roseGold-600 text-white font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Post Birthday Wish 🎁
+                </button>
+            </form>
+
+            <!-- Messages List Container -->
+            <div>
+                <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center justify-between">
+                    <span>Birthday Greetings (<span id="greetings-count">0</span>)</span>
+                    <span class="text-xs text-roseGold-500 font-normal"><i class="fa-solid fa-heart mr-1"></i> Public Wall</span>
+                </h3>
+
+                <div id="greetings-container" class="space-y-4 max-h-[500px] overflow-y-auto pr-1">
+                    <!-- Dynamic Greetings injected here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign-off Footer -->
+    <footer class="text-center mt-12 px-4">
+        <p class="text-2xl font-bold font-cursive text-roseGold-600">
+            With endless love always,
         </p>
-        <p class="text-brandPink font-bold text-xl pt-2">Love, Dad!</p>
-      </div>
-    </section>
+        <p class="text-3xl font-extrabold text-slate-900 font-cursive mt-1">
+            Love, Dad! ❤️
+        </p>
+    </footer>
 
-    <!-- Interactive Birthday Cake -->
-    <section class="bg-gradient-to-r from-pink-100 via-purple-50 to-pink-100 rounded-3xl p-8 text-center shadow-lg border border-pink-200">
-      <h2 class="text-3xl font-bold text-slate-800 mb-2">Make a Wish! 🎂</h2>
-      <p class="text-slate-600 mb-6">Click the button to blow out the candles and start the celebration!</p>
+    <!-- JavaScript logic -->
+    <script>
+        // 1. October 27 Countdown Timer Logic
+        function updateCountdown() {
+            const now = new Date();
+            let currentYear = now.getFullYear();
+            
+            // Set Target: October 27th
+            let targetDate = new Date(currentYear, 9, 27, 0, 0, 0); // Month 9 is October (0-indexed)
 
-      <!-- Cake Illustration -->
-      <div class="relative w-64 h-56 mx-auto my-4 flex flex-col items-center justify-end">
-        <!-- Candles -->
-        <div class="absolute top-8 flex justify-center gap-6 z-20">
-          <div class="relative flex flex-col items-center">
-            <div id="flame1" class="flame w-4 h-6 mb-1"></div>
-            <div id="smoke1"></div>
-            <div class="w-3 h-12 bg-gradient-to-b from-yellow-200 to-pink-400 rounded-t"></div>
-          </div>
-          <div class="relative flex flex-col items-center">
-            <div id="flame2" class="flame w-4 h-6 mb-1"></div>
-            <div id="smoke2"></div>
-            <div class="w-3 h-14 bg-gradient-to-b from-purple-200 to-indigo-400 rounded-t"></div>
-          </div>
-          <div class="relative flex flex-col items-center">
-            <div id="flame3" class="flame w-4 h-6 mb-1"></div>
-            <div id="smoke3"></div>
-            <div class="w-3 h-12 bg-gradient-to-b from-yellow-200 to-pink-400 rounded-t"></div>
-          </div>
-        </div>
+            // If Oct 27 has already passed this year, point to next year
+            if (now > targetDate && now.getDate() !== 27) {
+                targetDate = new Date(currentYear + 1, 9, 27, 0, 0, 0);
+            }
 
-        <!-- Cake Layers -->
-        <div class="w-48 h-12 bg-pink-300 rounded-t-2xl shadow-inner relative z-10 border-b-4 border-pink-400 flex items-center justify-around px-4">
-          <span class="w-3 h-3 bg-white rounded-full"></span>
-          <span class="w-3 h-3 bg-white rounded-full"></span>
-          <span class="w-3 h-3 bg-white rounded-full"></span>
-        </div>
-        <div class="w-56 h-16 bg-purple-300 rounded-t-lg shadow-inner relative z-0 border-b-4 border-purple-400 flex items-center justify-around px-6">
-          <span class="w-4 h-4 bg-pink-200 rounded-full"></span>
-          <span class="w-4 h-4 bg-pink-200 rounded-full"></span>
-          <span class="w-4 h-4 bg-pink-200 rounded-full"></span>
-        </div>
-        <!-- Cake Stand -->
-        <div class="w-64 h-4 bg-slate-200 rounded-full shadow-md"></div>
-      </div>
+            const diff = targetDate - now;
 
-      <button id="blowBtn" class="mt-4 px-8 py-3 bg-brandPink hover:bg-pink-600 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition transform active:scale-95 flex items-center gap-2 mx-auto">
-        <i data-lucide="wind" class="w-5 h-5"></i> Blow Out Candles
-      </button>
-    </section>
+            if (diff <= 0 && now.getDate() === 27) {
+                document.getElementById('cd-days').innerText = "00";
+                document.getElementById('cd-hours').innerText = "00";
+                document.getElementById('cd-minutes').innerText = "00";
+                document.getElementById('cd-seconds').innerText = "00";
+                return;
+            }
 
-    <!-- Growth Timeline / Memory Lane (10 Uncropped Photos) -->
-    <section>
-      <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-        <div>
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-800">Memory Lane</h2>
-          <p class="text-slate-600">Isabella's journey through the years</p>
-        </div>
-      </div>
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      <!-- Timeline Container -->
-      <div id="timelineView" class="relative border-l-4 border-pink-300 ml-4 md:ml-32 space-y-12">
-        
-        <!-- 1. Present Day -->
-        <div class="relative pl-8 md:pl-12 group">
-          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-brandPink border-4 border-white shadow"></div>
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
-            <span class="text-sm font-bold text-brandPink tracking-wider uppercase">Present Day</span>
-            <h3 class="text-xl font-bold text-slate-800 mt-1">Celebrating Isabella Today</h3>
-            <p class="text-slate-600 mt-2">Shining bright and creating new wonderful memories every single day.</p>
-            <div class="mt-4 min-h-[220px] bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
-              <img src="Photo1.jpg">
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
-                <i data-lucide="maximize-2" class="w-8 h-8"></i>
-              </div>
-            </div>
-            <label class="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-brandPink cursor-pointer hover:underline">
-              <i data-lucide="upload" class="w-4 h-4"></i> Replace Photo
-              <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, this)">
-            </label>
-          </div>
-        </div>
+            document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+            document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
 
-        <!-- 2. 1 Year Ago -->
-        <div class="relative pl-8 md:pl-12 group">
-          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-brandPurple border-4 border-white shadow"></div>
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
-            <span class="text-sm font-bold text-brandPurple tracking-wider uppercase">1 Year Ago</span>
-            <h3 class="text-xl font-bold text-slate-800 mt-1">Fun Adventures & Milestones</h3>
-            <p class="text-slate-600 mt-2">Always bringing laughter, energy, and happiness into my life.</p>
-            <div class="mt-4 min-h-[220px] bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
-              <img src="Photo2.jpg">
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
-                <i data-lucide="maximize-2" class="w-8 h-8"></i>
-              </div>
-            </div>
-            <label class="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-brandPurple cursor-pointer hover:underline">
-              <i data-lucide="upload" class="w-4 h-4"></i> Replace Photo
-              <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, this)">
-            </label>
-          </div>
-        </div>
+        // 2. Audio Synthesizer for "Happy Birthday" Melody
+        function playHappyBirthdayMelody() {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const ctx = new AudioContext();
 
-        <!-- 3. 2 Years Ago -->
-        <div class="relative pl-8 md:pl-12 group">
-          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-brandPeach border-4 border-white shadow"></div>
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
-            <span class="text-sm font-bold text-brandPeach tracking-wider uppercase">2 Years Ago</span>
-            <h3 class="text-xl font-bold text-slate-800 mt-1">Sweet Smiles & Special Moments</h3>
-            <p class="text-slate-600 mt-2">Cherishing precious everyday moments and favorite celebrations.</p>
-            <div class="mt-4 min-h-[220px] bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
-              <img src="Photo3.jpg">
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
-                <i data-lucide="maximize-2" class="w-8 h-8"></i>
-              </div>
-            </div>
-            <label class="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-brandPeach cursor-pointer hover:underline">
-              <i data-lucide="upload" class="w-4 h-4"></i> Replace Photo
-              <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, this)">
-            </label>
-          </div>
-        </div>
+                const notes = [
+                    { note: 261.63, duration: 0.3 }, // C4
+                    { note: 261.63, duration: 0.3 }, // C4
+                    { note: 293.66, duration: 0.6 }, // D4
+                    { note: 261.63, duration: 0.6 }, // C4
+                    { note: 349.23, duration: 0.6 }, // F4
+                    { note: 329.63, duration: 1.0 }, // E4
 
-        <!-- 4. 3 Years Ago -->
-        <div class="relative pl-8 md:pl-12 group">
-          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-pink-400 border-4 border-white shadow"></div>
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
-            <span class="text-sm font-bold text-pink-500 tracking-wider uppercase">3 Years Ago</span>
-            <h3 class="text-xl font-bold text-slate-800 mt-1">Laughter & Playtime</h3>
-            <p class="text-slate-600 mt-2">Filled with curiosity, fun games, and memorable days.</p>
-            <div class="mt-4 min-h-[220px] bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
-              <img src="Photo4.jpg">
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
-                <i data-lucide="maximize-2" class="w-8 h-8"></i>
-              </div>
-            </div>
-            <label class="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-pink-500 cursor-pointer hover:underline">
-              <i data-lucide="upload" class="w-4 h-4"></i> Replace Photo
-              <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, this)">
-            </label>
-          </div>
-        </div>
+                    { note: 261.63, duration: 0.3 }, // C4
+                    { note: 261.63, duration: 0.3 }, // C4
+                    { note: 293.66, duration: 0.6 }, // D4
+                    { note: 261.63, duration: 0.6 }, // C4
+                    { note: 392.00, duration: 0.6 }, // G4
+                    { note: 349.23, duration: 1.0 }, // F4
+                ];
 
-        <!-- 5. 4 Years Ago -->
-        <div class="relative pl-8 md:pl-12 group">
-          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-purple-400 border-4 border-white shadow"></div>
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
-            <span class="text-sm font-bold text-purple-400 tracking-wider uppercase">4 Years Ago</span>
-            <h3 class="text-xl font-bold text-slate-800 mt-1">Growing Up Fast</h3>
-            <p class="text-slate-600 mt-2">Every milestone brings so much pride and endless happiness.</p>
-            <div class="mt-4 min-h-[220px] bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
-              <img src="Photo5.jpg">
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
-                <i data-lucide="maximize-2" class="w-8 h-8"></i>
-              </div>
-            </div>
-            <label class="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-purple-400 cursor-pointer hover:underline">
-              <i data-lucide="upload" class="w-4 h-4"></i> Replace Photo
-              <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, this)">
-            </label>
-          </div>
-        </div>
+                let currentTime = ctx.currentTime + 0.1;
 
-        <!-- 6. 5 Years Ago -->
-        <div class="relative pl-8 md:pl-12 group">
-          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-teal-400 border-4 border-white shadow"></div>
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
-            <span class="text-sm font-bold text-teal-500 tracking-wider uppercase">5 Years Ago</span>
-            <h3 class="text-xl font-bold text-slate-800 mt-1">Joyful Days</h3>
-            <p class="text-slate-600 mt-2">Sparkling eyes and a heart full of wonder.</p>
-            <div class="mt-4 min-h-[220px] bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
-              <img src="Photo6.jpg">
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
-                <i data-lucide="maximize-2" class="w-8 h-8"></i>
-              </div>
-            </div>
-            <label class="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-teal-500 cursor-pointer hover:underline">
-              <i data-lucide="upload" class="w-4 h-4"></i> Replace Photo
-              <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, this)">
-            </label>
-          </div>
-        </div>
+                notes.forEach(item => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
 
-        <!-- 7. Fun Outings -->
-        <div class="relative pl-8 md:pl-12 group">
-          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-rose-400 border-4 border-white shadow"></div>
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
-            <span class="text-sm font-bold text-rose-500 tracking-wider uppercase">Fun Outings</span>
-            <h3 class="text-xl font-bold text-slate-800 mt-1">Adventures & Exploration</h3>
-            <p class="text-slate-600 mt-2">Exploring new places and creating unforgettable memories side by side.</p>
-            <div class="mt-4 min-h-[220px] bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
-              <img src="Photo7.jpg">
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
-                <i data-lucide="maximize-2" class="w-8 h-8"></i>
-              </div>
-            </div>
-            <label class="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-rose-500 cursor-pointer hover:underline">
-              <i data-lucide="upload" class="w-4 h-4"></i> Replace Photo
-              <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, this)">
-            </label>
-          </div>
-        </div>
+                    osc.type = 'sine';
+                    osc.frequency.value = item.note;
 
-        <!-- 8. Unforgettable Smiles -->
-        <div class="relative pl-8 md:pl-12 group">
-          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-amber-400 border-4 border-white shadow"></div>
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
-            <span class="text-sm font-bold text-amber-500 tracking-wider uppercase">Unforgettable Smiles</span>
-            <h3 class="text-xl font-bold text-slate-800 mt-1">Pure Happiness</h3>
-            <p class="text-slate-600 mt-2">Your smile lights up every room and makes every single day brighter.</p>
-            <div class="mt-4 min-h-[220px] bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
-              <img src="Photo8.jpg">
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
-                <i data-lucide="maximize-2" class="w-8 h-8"></i>
-              </div>
-            </div>
-            <label class="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-amber-500 cursor-pointer hover:underline">
-              <i data-lucide="upload" class="w-4 h-4"></i> Replace Photo
-              <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, this)">
-            </label>
-          </div>
-        </div>
+                    gain.gain.setValueAtTime(0.2, currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, currentTime + item.duration - 0.05);
 
-        <!-- 9. Toddler Years -->
-        <div class="relative pl-8 md:pl-12 group">
-          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-indigo-400 border-4 border-white shadow"></div>
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
-            <span class="text-sm font-bold text-indigo-500 tracking-wider uppercase">Toddler Years</span>
-            <h3 class="text-xl font-bold text-slate-800 mt-1">Little Discoveries</h3>
-            <p class="text-slate-600 mt-2">Learning new things every day and sharing sweet hugs.</p>
-            <div class="mt-4 min-h-[220px] bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
-              <img src="Photo9.jpg">
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
-                <i data-lucide="maximize-2" class="w-8 h-8"></i>
-              </div>
-            </div>
-            <label class="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-indigo-500 cursor-pointer hover:underline">
-              <i data-lucide="upload" class="w-4 h-4"></i> Replace Photo
-              <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, this)">
-            </label>
-          </div>
-        </div>
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
 
-        <!-- 10. Baby Steps -->
-        <div class="relative pl-8 md:pl-12 group">
-          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-brandYellow border-4 border-white shadow"></div>
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
-            <span class="text-sm font-bold text-brandYellow tracking-wider uppercase">Baby Steps</span>
-            <h3 class="text-xl font-bold text-slate-800 mt-1">First Milestones</h3>
-            <p class="text-slate-600 mt-2">Where it all began—the sweetest start to an amazing journey.</p>
-            <div class="mt-4 min-h-[220px] bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
-              <img src="Photo10.jpg">
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
-                <i data-lucide="maximize-2" class="w-8 h-8"></i>
-              </div>
-            </div>
-            <label class="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-brandYellow cursor-pointer hover:underline">
-              <i data-lucide="upload" class="w-4 h-4"></i> Replace Photo
-              <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, this)">
-            </label>
-          </div>
-        </div>
+                    osc.start(currentTime);
+                    osc.stop(currentTime + item.duration);
 
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4" onclick="closeLightbox()">
-    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-brandPink transition">
-      <i data-lucide="x" class="w-8 h-8"></i>
-    </button>
-    <div class="max-w-4xl max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
-      <img id="lightboxImg" src="" alt="Enlarged Memory" class="max-w-full max-h-[80vh] rounded-2xl object-contain shadow-2xl">
-      <p id="lightboxCaption" class="text-white text-lg font-medium mt-4 text-center"></p>
-    </div>
-  </div>
-
-  <footer class="bg-white border-t border-pink-100 py-6 text-center text-slate-500 text-sm">
-    <p>Made with ❤️ for Isabella's Birthday | October 27th</p>
-  </footer>
-
-  <script>
-    // Initialize Lucide Icons
-    lucide.createIcons();
-
-    // Birthday Countdown to October 27th
-    function updateCountdown() {
-      const now = new Date();
-      let year = now.getFullYear();
-      let target = new Date(year, 9, 27, 0, 0, 0); // Month 9 is October
-
-      if (now > target) {
-        target = new Date(year + 1, 9, 27, 0, 0, 0);
-      }
-
-      const diff = target - now;
-
-      if (diff <= 0) {
-        document.getElementById('cd-days').innerText = "00";
-        document.getElementById('cd-hours').innerText = "00";
-        document.getElementById('cd-minutes').innerText = "00";
-        document.getElementById('cd-seconds').innerText = "00";
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
-      document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
-      document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
-      document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
-    }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // Fireworks Blast Trigger
-    function launchFireworks() {
-      const duration = 3 * 1000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999 };
-
-      function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
-      }
-
-      const interval = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
+                    currentTime += item.duration;
+                });
+            } catch (e) {
+                console.log("Audio play blocked or not supported:", e);
+            }
         }
 
-        const particleCount = 50 * (timeLeft / duration);
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.4), y: Math.random() - 0.2 } });
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.6, 0.9), y: Math.random() - 0.2 } });
-      }, 250);
-    }
+        // 3. Candle Blow Out Action
+        let candleBlown = false;
+        function blowOutCandle() {
+            if (candleBlown) return;
+            candleBlown = true;
 
-    // Candle Blowing Effect + Auto Play Music + Fireworks
-    document.getElementById('blowBtn').addEventListener('click', () => {
-      const flames = [document.getElementById('flame1'), document.getElementById('flame2'), document.getElementById('flame3')];
-      flames.forEach((flame, index) => {
-        if (flame) {
-          flame.classList.add('extinguished');
-          const smokeContainer = document.getElementById(`smoke${index + 1}`);
-          if (smokeContainer) {
-            const smoke = document.createElement('div');
-            smoke.className = 'smoke';
-            smokeContainer.appendChild(smoke);
-          }
+            // Hide flame, show smoke
+            document.getElementById('candle-flame').classList.add('hidden');
+            const smoke = document.getElementById('candle-smoke');
+            smoke.classList.remove('hidden');
+
+            // Update button text
+            const btn = document.getElementById('blow-btn');
+            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Wish Made! ✨';
+            btn.classList.replace('bg-roseGold-500', 'bg-emerald-500');
+
+            // Play Synthesizer Birthday Tune
+            playHappyBirthdayMelody();
+
+            // Trigger Fireworks / Confetti
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: { y: 0.6 }
+                });
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 80,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 }
+                    });
+                    confetti({
+                        particleCount: 80,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 }
+                    });
+                }, 400);
+            }
         }
-      });
 
-      // Launch Fireworks Show
-      launchFireworks();
+        // 4. Guestbook & Greetings Management
+        const defaultGreetings = [
+            {
+                name: "Dad",
+                relation: "Family",
+                message: "Happy Birthday to my amazing daughter Isabella! Bringing so much joy and warmth into my life every day. Love you always!",
+                time: "Earlier today",
+                avatar: "❤️"
+            },
+            {
+                name: "Jessica & Maya",
+                relation: "Friends",
+                message: "Happy 25th Isabella!! Hope your day is filled with cake, laughter, and so many wonderful surprises! 🎉✨",
+                time: "1 hour ago",
+                avatar: "🌸"
+            },
+            {
+                name: "Uncle David",
+                relation: "Family",
+                message: "Wishing you the happiest of birthdays! So proud of the amazing person you've grown up to be.",
+                time: "3 hours ago",
+                avatar: "🎁"
+            }
+        ];
 
-      // Automatically Start "Happy Birthday" Audio
-      if (!isPlaying) {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function loadGreetings() {
+            const stored = localStorage.getItem('isabella_greetings');
+            let greetings = stored ? JSON.parse(stored) : defaultGreetings;
+            renderGreetings(greetings);
         }
-        isPlaying = true;
-        document.getElementById('musicToggle').classList.add('bg-pink-100', 'text-brandPink');
-        playNoteSequence(0);
-      }
-    });
 
-    // Confetti Button
-    document.getElementById('confettiBtn').addEventListener('click', () => {
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.5 }
-      });
-    });
+        function renderGreetings(greetings) {
+            const container = document.getElementById('greetings-container');
+            const countEl = document.getElementById('greetings-count');
+            countEl.innerText = greetings.length;
 
-    // Web Audio Synthesizer: "Happy Birthday To You" Melody
-    let isPlaying = false;
-    let audioCtx = null;
-    let musicTimeout = null;
-
-    const birthdayMelody = [
-      { note: 261.63, duration: 0.35 },
-      { note: 261.63, duration: 0.25 },
-      { note: 293.66, duration: 0.60 },
-      { note: 261.63, duration: 0.60 },
-      { note: 349.23, duration: 0.60 },
-      { note: 329.63, duration: 1.00 },
-
-      { note: 261.63, duration: 0.35 },
-      { note: 261.63, duration: 0.25 },
-      { note: 293.66, duration: 0.60 },
-      { note: 261.63, duration: 0.60 },
-      { note: 392.00, duration: 0.60 },
-      { note: 349.23, duration: 1.00 },
-
-      { note: 261.63, duration: 0.35 },
-      { note: 261.63, duration: 0.25 },
-      { note: 523.25, duration: 0.60 },
-      { note: 440.00, duration: 0.60 },
-      { note: 349.23, duration: 0.60 },
-      { note: 329.63, duration: 0.60 },
-      { note: 293.66, duration: 1.00 },
-
-      { note: 466.16, duration: 0.35 },
-      { note: 466.16, duration: 0.25 },
-      { note: 440.00, duration: 0.60 },
-      { note: 349.23, duration: 0.60 },
-      { note: 392.00, duration: 0.60 },
-      { note: 349.23, duration: 1.20 }
-    ];
-
-    function playNoteSequence(index) {
-      if (!isPlaying) return;
-
-      const item = birthdayMelody[index % birthdayMelody.length];
-      
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(item.note, audioCtx.currentTime);
-      
-      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + item.duration);
-
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      osc.start();
-      osc.stop(audioCtx.currentTime + item.duration);
-
-      musicTimeout = setTimeout(() => {
-        playNoteSequence(index + 1);
-      }, item.duration * 1000 + 80);
-    }
-
-    document.getElementById('musicToggle').addEventListener('click', () => {
-      const btn = document.getElementById('musicToggle');
-      if (!isPlaying) {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            container.innerHTML = greetings.map((item) => `
+                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-start gap-3 transition-all hover:bg-roseGold-50/40">
+                    <div class="w-10 h-10 rounded-full bg-roseGold-100 border border-roseGold-200 flex items-center justify-center text-lg flex-shrink-0">
+                        ${item.avatar || '🎂'}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-2 mb-1">
+                            <h4 class="text-sm font-bold text-slate-800 truncate">${escapeHtml(item.name)} 
+                                ${item.relation ? `<span class="text-xs font-normal text-roseGold-500 bg-roseGold-100/60 px-2 py-0.5 rounded-full ml-1">${escapeHtml(item.relation)}</span>` : ''}
+                            </h4>
+                            <span class="text-[11px] text-slate-400 flex-shrink-0">${item.time}</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${escapeHtml(item.message)}</p>
+                    </div>
+                </div>
+            `).join('');
         }
-        isPlaying = true;
-        btn.classList.add('bg-pink-100', 'text-brandPink');
-        playNoteSequence(0);
-      } else {
-        isPlaying = false;
-        clearTimeout(musicTimeout);
-        btn.classList.remove('bg-pink-100', 'text-brandPink');
-      }
-    });
 
-    // Lightbox Functionality
-    function openLightbox(container) {
-      const img = container.querySelector('img');
-      if (img) {
-        document.getElementById('lightboxImg').src = img.src;
-        document.getElementById('lightboxCaption').innerText = img.alt || '';
-        document.getElementById('lightbox').classList.remove('hidden');
-        document.getElementById('lightbox').classList.add('flex');
-      }
-    }
+        function handleGreetingSubmit(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('sender-name');
+            const relationInput = document.getElementById('sender-relation');
+            const msgInput = document.getElementById('greeting-msg');
 
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.add('hidden');
-      document.getElementById('lightbox').classList.remove('flex');
-    }
+            const name = nameInput.value.trim();
+            const relation = relationInput.value.trim();
+            const message = msgInput.value.trim();
 
-    // Local Image Replacement Handler
-    function handleImageUpload(event, inputElement) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const container = inputElement.closest('.bg-white').querySelector('.group\\/img');
-          const img = container.querySelector('img');
-          if (img) {
-            img.src = e.target.result;
-          }
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-  </script>
+            if (!name || !message) return;
+
+            const avatars = ['🥳', '✨', '💖', '🎁', '🎂', '🎉', '🌟'];
+            const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+
+            const newEntry = {
+                name: name,
+                relation: relation,
+                message: message,
+                time: "Just now",
+                avatar: randomAvatar
+            };
+
+            const stored = localStorage.getItem('isabella_greetings');
+            let greetings = stored ? JSON.parse(stored) : [...defaultGreetings];
+            greetings.unshift(newEntry); // Add new greeting to top
+
+            localStorage.setItem('isabella_greetings', JSON.stringify(greetings));
+            renderGreetings(greetings);
+
+            // Clear Form
+            nameInput.value = '';
+            relationInput.value = '';
+            msgInput.value = '';
+
+            // Confetti Blast
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 50,
+                    spread: 60,
+                    origin: { y: 0.8 }
+                });
+            }
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadGreetings();
+        });
+    </script>
 </body>
 </html>
