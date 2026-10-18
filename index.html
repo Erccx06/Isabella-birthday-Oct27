@@ -169,7 +169,7 @@
       </button>
     </section>
 
-    <!-- Growth Timeline / Memory Lane -->
+    <!-- Growth Timeline / Memory Lane (Photos 1 to 10) -->
     <section>
       <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
         <div>
@@ -178,15 +178,169 @@
         </div>
       </div>
 
+      <!-- Timeline Container -->
       <div id="timelineView" class="relative border-l-4 border-pink-300 ml-4 md:ml-32 space-y-12">
+        
+        <!-- 1. Present Day (Photo1.jpg) -->
         <div class="relative pl-8 md:pl-12 group">
           <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-brandPink border-4 border-white shadow"></div>
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100">
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
             <span class="text-sm font-bold text-brandPink tracking-wider uppercase">Present Day</span>
             <h3 class="text-xl font-bold text-slate-800 mt-1">Celebrating Isabella Today</h3>
             <p class="text-slate-600 mt-2">Shining bright and creating new wonderful memories every single day.</p>
+            <div class="mt-4 bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
+              <img src="Photo1.jpg" alt="Present Day" class="w-full h-auto object-contain rounded-xl">
+              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
+                <i data-lucide="maximize-2" class="w-8 h-8"></i>
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- 2. 1 Year Ago (Photo2.jpg) -->
+        <div class="relative pl-8 md:pl-12 group">
+          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-brandPurple border-4 border-white shadow"></div>
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
+            <span class="text-sm font-bold text-brandPurple tracking-wider uppercase">1 Year Ago</span>
+            <h3 class="text-xl font-bold text-slate-800 mt-1">Fun Adventures & Milestones</h3>
+            <p class="text-slate-600 mt-2">Always bringing laughter, energy, and happiness into my life.</p>
+            <div class="mt-4 bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
+              <img src="Photo2.jpg" alt="1 Year Ago" class="w-full h-auto object-contain rounded-xl">
+              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
+                <i data-lucide="maximize-2" class="w-8 h-8"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 2 Years Ago (Photo3.jpg) -->
+        <div class="relative pl-8 md:pl-12 group">
+          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-brandPeach border-4 border-white shadow"></div>
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
+            <span class="text-sm font-bold text-brandPeach tracking-wider uppercase">2 Years Ago</span>
+            <h3 class="text-xl font-bold text-slate-800 mt-1">Sweet Smiles & Special Moments</h3>
+            <p class="text-slate-600 mt-2">Cherishing precious everyday moments and favorite celebrations.</p>
+            <div class="mt-4 bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
+              <img src="Photo3.jpg" alt="2 Years Ago" class="w-full h-auto object-contain rounded-xl">
+              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
+                <i data-lucide="maximize-2" class="w-8 h-8"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. 3 Years Ago (Photo4.jpg) -->
+        <div class="relative pl-8 md:pl-12 group">
+          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-pink-400 border-4 border-white shadow"></div>
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
+            <span class="text-sm font-bold text-pink-500 tracking-wider uppercase">3 Years Ago</span>
+            <h3 class="text-xl font-bold text-slate-800 mt-1">Laughter & Playtime</h3>
+            <p class="text-slate-600 mt-2">Filled with curiosity, fun games, and memorable days.</p>
+            <div class="mt-4 bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
+              <img src="Photo4.jpg" alt="3 Years Ago" class="w-full h-auto object-contain rounded-xl">
+              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
+                <i data-lucide="maximize-2" class="w-8 h-8"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. 4 Years Ago (Photo5.jpg) -->
+        <div class="relative pl-8 md:pl-12 group">
+          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-purple-400 border-4 border-white shadow"></div>
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
+            <span class="text-sm font-bold text-purple-400 tracking-wider uppercase">4 Years Ago</span>
+            <h3 class="text-xl font-bold text-slate-800 mt-1">Growing Up Fast</h3>
+            <p class="text-slate-600 mt-2">Every milestone brings so much pride and endless happiness.</p>
+            <div class="mt-4 bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
+              <img src="Photo5.jpg" alt="4 Years Ago" class="w-full h-auto object-contain rounded-xl">
+              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
+                <i data-lucide="maximize-2" class="w-8 h-8"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. 5 Years Ago (Photo6.jpg) -->
+        <div class="relative pl-8 md:pl-12 group">
+          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-teal-400 border-4 border-white shadow"></div>
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
+            <span class="text-sm font-bold text-teal-500 tracking-wider uppercase">5 Years Ago</span>
+            <h3 class="text-xl font-bold text-slate-800 mt-1">Joyful Days</h3>
+            <p class="text-slate-600 mt-2">Sparkling eyes and a heart full of wonder.</p>
+            <div class="mt-4 bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
+              <img src="Photo6.jpg" alt="5 Years Ago" class="w-full h-auto object-contain rounded-xl">
+              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
+                <i data-lucide="maximize-2" class="w-8 h-8"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Fun Outings (Photo7.jpg) -->
+        <div class="relative pl-8 md:pl-12 group">
+          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-rose-400 border-4 border-white shadow"></div>
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
+            <span class="text-sm font-bold text-rose-500 tracking-wider uppercase">Fun Outings</span>
+            <h3 class="text-xl font-bold text-slate-800 mt-1">Adventures & Exploration</h3>
+            <p class="text-slate-600 mt-2">Exploring new places and creating unforgettable memories side by side.</p>
+            <div class="mt-4 bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
+              <img src="Photo7.jpg" alt="Fun Outings" class="w-full h-auto object-contain rounded-xl">
+              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
+                <i data-lucide="maximize-2" class="w-8 h-8"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Unforgettable Smiles (Photo8.jpg) -->
+        <div class="relative pl-8 md:pl-12 group">
+          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-amber-400 border-4 border-white shadow"></div>
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
+            <span class="text-sm font-bold text-amber-500 tracking-wider uppercase">Unforgettable Smiles</span>
+            <h3 class="text-xl font-bold text-slate-800 mt-1">Pure Happiness</h3>
+            <p class="text-slate-600 mt-2">Your smile lights up every room and makes every single day brighter.</p>
+            <div class="mt-4 bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
+              <img src="Photo8.jpg" alt="Unforgettable Smiles" class="w-full h-auto object-contain rounded-xl">
+              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
+                <i data-lucide="maximize-2" class="w-8 h-8"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Toddler Years (Photo9.jpg) -->
+        <div class="relative pl-8 md:pl-12 group">
+          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-indigo-400 border-4 border-white shadow"></div>
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
+            <span class="text-sm font-bold text-indigo-500 tracking-wider uppercase">Toddler Years</span>
+            <h3 class="text-xl font-bold text-slate-800 mt-1">Little Discoveries</h3>
+            <p class="text-slate-600 mt-2">Learning new things every day and sharing sweet hugs.</p>
+            <div class="mt-4 bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
+              <img src="Photo9.jpg" alt="Toddler Years" class="w-full h-auto object-contain rounded-xl">
+              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
+                <i data-lucide="maximize-2" class="w-8 h-8"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Baby Steps (Photo10.jpg) -->
+        <div class="relative pl-8 md:pl-12 group">
+          <div class="absolute -left-[14px] top-1.5 w-6 h-6 rounded-full bg-brandYellow border-4 border-white shadow"></div>
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-lg transition">
+            <span class="text-sm font-bold text-brandYellow tracking-wider uppercase">Baby Steps</span>
+            <h3 class="text-xl font-bold text-slate-800 mt-1">First Milestones</h3>
+            <p class="text-slate-600 mt-2">Where it all began—the sweetest start to an amazing journey.</p>
+            <div class="mt-4 bg-slate-50 border border-slate-100 rounded-xl overflow-hidden flex items-center justify-center relative group/img cursor-pointer" onclick="openLightbox(this)">
+              <img src="Photo10.jpg" alt="Baby Steps" class="w-full h-auto object-contain rounded-xl">
+              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition flex items-center justify-center text-white">
+                <i data-lucide="maximize-2" class="w-8 h-8"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -226,25 +380,50 @@
 
   </main>
 
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4" onclick="closeLightbox()">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-brandPink transition">
+      <i data-lucide="x" class="w-8 h-8"></i>
+    </button>
+    <div class="max-w-4xl max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
+      <img id="lightboxImg" src="" alt="Enlarged Memory" class="max-w-full max-h-[80vh] rounded-2xl object-contain shadow-2xl">
+      <p id="lightboxCaption" class="text-white text-lg font-medium mt-4 text-center"></p>
+    </div>
+  </div>
+
   <footer class="bg-white border-t border-pink-100 py-6 text-center text-slate-500 text-sm mt-12">
     <p>Made with ❤️ for Isabella's Birthday | October 27th</p>
   </footer>
 
   <script>
+    // Initialize Lucide Icons
     lucide.createIcons();
 
-    // Countdown
+    // Birthday Countdown to October 27th
     function updateCountdown() {
       const now = new Date();
       let year = now.getFullYear();
-      let target = new Date(year, 9, 27, 0, 0, 0);
-      if (now > target) target = new Date(year + 1, 9, 27, 0, 0, 0);
+      let target = new Date(year, 9, 27, 0, 0, 0); // Month 9 is October
+
+      if (now > target) {
+        target = new Date(year + 1, 9, 27, 0, 0, 0);
+      }
+
       const diff = target - now;
-      if (diff <= 0) return;
+
+      if (diff <= 0) {
+        document.getElementById('cd-days').innerText = "00";
+        document.getElementById('cd-hours').innerText = "00";
+        document.getElementById('cd-minutes').innerText = "00";
+        document.getElementById('cd-seconds').innerText = "00";
+        return;
+      }
+
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
       document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
       document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
       document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
@@ -253,19 +432,151 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Candles & Confetti
+    // Fireworks Blast Trigger
+    function launchFireworks() {
+      const duration = 3 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999 };
+
+      function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+          return clearInterval(interval);
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.4), y: Math.random() - 0.2 } });
+        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.6, 0.9), y: Math.random() - 0.2 } });
+      }, 250);
+    }
+
+    // Candle Blowing Effect + Fireworks
     document.getElementById('blowBtn').addEventListener('click', () => {
-      document.getElementById('flame1').classList.add('extinguished');
-      document.getElementById('flame2').classList.add('extinguished');
-      document.getElementById('flame3').classList.add('extinguished');
-      confetti({ particleCount: 100, spread: 70, origin: { y: 0.5 } });
+      const flames = [document.getElementById('flame1'), document.getElementById('flame2'), document.getElementById('flame3')];
+      flames.forEach((flame, index) => {
+        if (flame) {
+          flame.classList.add('extinguished');
+          const smokeContainer = document.getElementById(`smoke${index + 1}`);
+          if (smokeContainer) {
+            const smoke = document.createElement('div');
+            smoke.className = 'smoke';
+            smokeContainer.appendChild(smoke);
+          }
+        }
+      });
+
+      // Launch Fireworks Show
+      launchFireworks();
     });
 
+    // Confetti Button
     document.getElementById('confettiBtn').addEventListener('click', () => {
-      confetti({ particleCount: 100, spread: 70, origin: { y: 0.5 } });
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.5 }
+      });
     });
 
-    // Firestore Guestbook Logic
+    // Web Audio Synthesizer: Continuous Happy Birthday Melody Loop
+    let isPlaying = false;
+    let audioCtx = null;
+    let musicTimeout = null;
+
+    const birthdayMelody = [
+      { note: 261.63, duration: 0.35 }, { note: 261.63, duration: 0.25 }, { note: 293.66, duration: 0.60 }, { note: 261.63, duration: 0.60 }, { note: 349.23, duration: 0.60 }, { note: 329.63, duration: 1.00 },
+      { note: 261.63, duration: 0.35 }, { note: 261.63, duration: 0.25 }, { note: 293.66, duration: 0.60 }, { note: 261.63, duration: 0.60 }, { note: 392.00, duration: 0.60 }, { note: 349.23, duration: 1.00 },
+      { note: 261.63, duration: 0.35 }, { note: 261.63, duration: 0.25 }, { note: 523.25, duration: 0.60 }, { note: 440.00, duration: 0.60 }, { note: 349.23, duration: 0.60 }, { note: 329.63, duration: 0.60 }, { note: 293.66, duration: 1.00 },
+      { note: 466.16, duration: 0.35 }, { note: 466.16, duration: 0.25 }, { note: 440.00, duration: 0.60 }, { note: 349.23, duration: 0.60 }, { note: 392.00, duration: 0.60 }, { note: 349.23, duration: 1.20 }
+    ];
+
+    function playNoteSequence(index) {
+      if (!isPlaying || !audioCtx) return;
+
+      const item = birthdayMelody[index % birthdayMelody.length];
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(item.note, audioCtx.currentTime);
+
+      gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + item.duration);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + item.duration);
+
+      musicTimeout = setTimeout(() => {
+        playNoteSequence(index + 1);
+      }, item.duration * 1000 + 50);
+    }
+
+    function startBackgroundMusic() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      if (!isPlaying) {
+        isPlaying = true;
+        document.getElementById('musicToggle').classList.add('bg-pink-100', 'text-brandPink');
+        playNoteSequence(0);
+      }
+    }
+
+    // Auto-start music on first user interaction
+    ['click', 'touchstart', 'keydown'].forEach(evt => {
+      window.addEventListener(evt, () => {
+        if (!isPlaying) startBackgroundMusic();
+      }, { once: true });
+    });
+
+    document.getElementById('musicToggle').addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      isPlaying = !isPlaying;
+      const btn = document.getElementById('musicToggle');
+      if (isPlaying) {
+        btn.classList.add('bg-pink-100', 'text-brandPink');
+        playNoteSequence(0);
+      } else {
+        btn.classList.remove('bg-pink-100', 'text-brandPink');
+        if (musicTimeout) clearTimeout(musicTimeout);
+      }
+    });
+
+    // Lightbox Functionality
+    function openLightbox(element) {
+      const img = element.querySelector('img');
+      const caption = element.parentElement.querySelector('h3').innerText;
+      document.getElementById('lightboxImg').src = img.src;
+      document.getElementById('lightboxCaption').innerText = caption;
+      const lb = document.getElementById('lightbox');
+      lb.classList.remove('hidden');
+      lb.classList.add('flex');
+    }
+
+    function closeLightbox() {
+      const lb = document.getElementById('lightbox');
+      lb.classList.remove('flex');
+      lb.classList.add('hidden');
+    }
+
+    // Interactive Guestbook Functionality (Powered by Firebase Firestore)
     const greetingsContainer = document.getElementById('greetingsContainer');
     const greetingCount = document.getElementById('greetingCount');
     const greetingForm = document.getElementById('greetingForm');
@@ -281,100 +592,3 @@
       window.onSnapshot(q, (snapshot) => {
         let greetings = [];
         snapshot.forEach((doc) => {
-          greetings.push({ id: doc.id, ...doc.data() });
-        });
-
-        greetingCount.innerText = greetings.length;
-
-        if (greetings.length === 0) {
-          greetingsContainer.innerHTML = `<p class="text-center text-slate-400 py-6 italic bg-slate-50 rounded-xl border border-dashed border-slate-200">No greetings posted yet. Be the first to leave a wish for Isabella!</p>`;
-          return;
-        }
-
-        greetingsContainer.innerHTML = greetings.map(g => {
-          let dateStr = "Just now";
-          if (g.timestamp && g.timestamp.toDate) {
-            dateStr = g.timestamp.toDate().toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
-          }
-
-          return `
-            <div class="bg-pink-50/40 border border-pink-100 p-4 rounded-2xl shadow-sm space-y-1">
-              <div class="flex justify-between items-center">
-                <h4 class="font-bold text-slate-800">${escapeHtml(g.name)}</h4>
-                <span class="text-xs text-slate-400">${dateStr}</span>
-              </div>
-              <p class="text-slate-600 text-sm whitespace-pre-wrap">${escapeHtml(g.message)}</p>
-            </div>
-          `;
-        }).join('');
-      });
-    }
-
-    greetingForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const nameInput = document.getElementById('guestName');
-      const messageInput = document.getElementById('guestMessage');
-      const submitBtn = greetingForm.querySelector('button[type="submit"]');
-
-      const name = nameInput.value.trim();
-      const message = messageInput.value.trim();
-      if (!name || !message) return;
-
-      submitBtn.disabled = true;
-      submitBtn.innerText = "Posting...";
-
-      try {
-        await window.addDoc(window.collection(window.db, "greetings"), {
-          name: name,
-          message: message,
-          timestamp: new Date()
-        });
-        nameInput.value = '';
-        messageInput.value = '';
-      } catch (error) {
-        console.error("Error adding greeting: ", error);
-        alert("Error posting message. Please try again.");
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = `<i data-lucide="send" class="w-4 h-4"></i> Post Greeting`;
-        lucide.createIcons();
-      }
-    });
-
-    function escapeHtml(text) {
-      if (!text) return '';
-      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-    }
-
-    window.addEventListener('load', () => {
-      initGuestbook();
-    });
-  </script>
-
-  <!-- Firebase Module -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyD50V3dmqaFsI0PPXMwEKxZJ9b0aP3twaA",
-      authDomain: "oct27-82c47.firebaseapp.com",
-      projectId: "oct27-82c47",
-      storageBucket: "oct27-82c47.appspot.com",
-      messagingSenderId: "637522294974",
-      appId: "1:637522294974:web:f44d28ff046a0b53c346ef",
-      measurementId: "G-BL2186HLQX"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    
-    window.db = db;
-    window.collection = collection;
-    window.addDoc = addDoc;
-    window.onSnapshot = onSnapshot;
-    window.query = query;
-    window.orderBy = orderBy;
-  </script>
-</body>
-</html>
