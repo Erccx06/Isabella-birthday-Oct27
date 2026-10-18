@@ -1,580 +1,532 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Isabella! 🎂</title>
+    <title>Happy Birthday Isabella!</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti & Canvas Fireworks -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Canvas Confetti -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        roseGold: {
-                            50: '#fff5f7',
-                            100: '#ffe6ec',
-                            200: '#fecdd6',
+                        rose: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
                             300: '#fda4af',
                             400: '#fb7185',
-                            500: '#e11d48',
-                            600: '#be123c',
+                            500: '#f43f5e',
+                            600: '#e11d48',
                         },
-                        cream: '#fffdfa'
+                        amber: {
+                            100: '#fef3c7',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                        }
                     },
                     fontFamily: {
-                        cursive: ['Dancing Script', 'cursive'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        handwriting: ['Caveat', 'cursive'],
+                        sans: ['Outfit', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        .glow-effect {
-            box-shadow: 0 0 25px rgba(251, 113, 133, 0.4);
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
         }
-        .flame-animation {
-            animation: flicker 0.8s infinite alternate ease-in-out;
+        
+        .flame {
+            background: radial-gradient(ellipse at bottom, #fef08a 0%, #f97316 60%, transparent 100%);
+            border-top-left-radius: 50% 60%;
+            border-top-right-radius: 50% 60%;
+            border-bottom-left-radius: 50% 40%;
+            border-bottom-right-radius: 50% 40%;
+            animation: flicker 1.2s infinite alternate ease-in-out;
             transform-origin: center bottom;
+            filter: drop-shadow(0 0 8px rgba(251, 146, 60, 0.8));
         }
+
         @keyframes flicker {
-            0% { transform: scale(1) rotate(-2deg); opacity: 0.9; }
-            50% { transform: scale(1.1) rotate(2deg); opacity: 1; filter: drop-shadow(0 0 8px #ff9e00); }
-            100% { transform: scale(0.95) rotate(-1deg); opacity: 0.85; }
+            0% { transform: scale(1) rotate(-2deg); opacity: 0.95; }
+            20% { transform: scale(1.08) rotate(2deg); opacity: 1; }
+            40% { transform: scale(0.95) rotate(-1deg); opacity: 0.85; }
+            60% { transform: scale(1.05) rotate(1deg); opacity: 1; }
+            80% { transform: scale(0.98) rotate(-2deg); opacity: 0.9; }
+            100% { transform: scale(1.02) rotate(2deg); opacity: 1; }
         }
-        .smoke-animation {
-            animation: rise 1.5s forwards ease-out;
+
+        .smoke {
+            animation: riseSmoke 2s forwards ease-out;
         }
-        @keyframes rise {
-            0% { opacity: 0.8; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-40px) scale(2.5); }
+
+        @keyframes riseSmoke {
+            0% { opacity: 0.8; transform: translateY(0) scaleX(1); }
+            100% { opacity: 0; transform: translateY(-40px) scaleX(3); filter: blur(4px); }
         }
     </style>
 </head>
-<body class="bg-gradient-to-b from-roseGold-50 via-cream to-roseGold-100 text-slate-800 font-sans min-h-screen pb-16 selection:bg-roseGold-200">
+<body class="bg-gradient-to-br from-rose-50 via-purple-50 to-pink-100 min-h-screen font-sans text-slate-800 antialiased selection:bg-pink-300 selection:text-pink-900 pb-16">
 
-    <!-- Header / Hero Section -->
-    <header class="relative text-center pt-12 pb-8 px-4 overflow-hidden">
+    <!-- Hero Header -->
+    <header class="relative overflow-hidden pt-12 pb-16 px-4 text-center">
         <div class="max-w-4xl mx-auto">
-            <span class="inline-block px-4 py-1.5 bg-roseGold-100 text-roseGold-600 rounded-full text-sm font-semibold tracking-wide uppercase mb-3 shadow-sm border border-roseGold-200">
-                ✨ October 27th Celebration ✨
+            <span class="inline-block px-4 py-1.5 mb-4 rounded-full bg-pink-100 text-pink-600 font-semibold text-sm tracking-wide uppercase shadow-sm border border-pink-200">
+                ✨ Official Birthday Celebration ✨
             </span>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight font-cursive drop-shadow-sm mb-2">
-                Happy Birthday, Isabella! ❤️
+            <h1 class="text-5xl sm:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-rose-500 to-purple-600 tracking-tight leading-tight mb-4">
+                Happy Birthday, Isabella! 🎉
             </h1>
-            <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-medium">
-                Celebrating all the beautiful memories, laughter, and incredible milestones along the way!
+            <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto font-light leading-relaxed mb-8">
+                Celebrating your wonderful journey, cherished memories, and all the magical moments to come.
             </p>
 
-            <!-- Countdown Timer -->
-            <div class="mt-8 grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-roseGold-100">
-                <div class="text-center">
-                    <span id="cd-days" class="block text-2xl sm:text-3xl font-extrabold text-roseGold-500">00</span>
-                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Days</span>
-                </div>
-                <div class="text-center">
-                    <span id="cd-hours" class="block text-2xl sm:text-3xl font-extrabold text-roseGold-500">00</span>
-                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Hours</span>
-                </div>
-                <div class="text-center">
-                    <span id="cd-minutes" class="block text-2xl sm:text-3xl font-extrabold text-roseGold-500">00</span>
-                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Mins</span>
-                </div>
-                <div class="text-center">
-                    <span id="cd-seconds" class="block text-2xl sm:text-3xl font-extrabold text-roseGold-500">00</span>
-                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Secs</span>
-                </div>
+            <!-- Music Synthesizer Control -->
+            <div class="inline-flex items-center gap-3 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-rose-100">
+                <button id="playMusicBtn" onclick="toggleBirthdayTune()" class="flex items-center gap-2 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-medium px-5 py-2.5 rounded-full shadow-md transition-all transform hover:scale-105 active:scale-95">
+                    <svg id="musicIcon" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                    </svg>
+                    <span id="musicBtnText">Play Birthday Song 🎵</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Interactive Birthday Cake & Candle Blowing -->
-    <section class="max-w-2xl mx-auto my-8 px-4 text-center">
-        <div class="bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-roseGold-100 glow-effect relative overflow-hidden">
-            <h2 class="text-2xl font-bold text-slate-800 mb-2">Make a Birthday Wish! 🎂</h2>
-            <p class="text-slate-500 text-sm mb-6">Click or tap the flame on the candle to blow it out!</p>
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 space-y-16">
 
-            <div class="relative w-48 h-48 mx-auto my-4 flex flex-col items-center justify-end">
-                <!-- Flame -->
-                <div id="candle-flame" onclick="blowOutCandle()" class="flame-animation cursor-pointer z-20 mb-[-6px]">
-                    <div class="w-6 h-8 bg-amber-400 rounded-full blur-[1px] relative flex items-center justify-center">
-                        <div class="w-3 h-5 bg-yellow-100 rounded-full"></div>
+        <!-- Interactive Cake Section -->
+        <section class="glass-card rounded-3xl p-8 sm:p-12 shadow-xl text-center relative overflow-hidden">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2">Make a Birthday Wish! 🎂</h2>
+            <p class="text-slate-600 mb-8" id="cakeInstruction">Click the button or blown candles to celebrate!</p>
+
+            <!-- Cake Graphic -->
+            <div class="relative w-64 h-56 mx-auto my-6 flex flex-col items-center justify-end">
+                <!-- Candle Box Container -->
+                <div class="flex justify-center gap-6 mb-2 z-10">
+                    <!-- Candle 1 -->
+                    <div class="relative flex flex-col items-center">
+                        <div id="flame1" class="flame w-4 h-6 mb-1"></div>
+                        <div id="smoke1" class="hidden absolute -top-8 w-3 h-8 bg-slate-300 rounded-full opacity-0"></div>
+                        <div class="w-3 h-10 bg-gradient-to-b from-pink-300 to-pink-400 rounded-t-sm shadow-sm border-x border-pink-400"></div>
+                    </div>
+                    <!-- Candle 2 -->
+                    <div class="relative flex flex-col items-center -mt-2">
+                        <div id="flame2" class="flame w-4 h-6 mb-1"></div>
+                        <div id="smoke2" class="hidden absolute -top-8 w-3 h-8 bg-slate-300 rounded-full opacity-0"></div>
+                        <div class="w-3 h-12 bg-gradient-to-b from-purple-300 to-purple-400 rounded-t-sm shadow-sm border-x border-purple-400"></div>
+                    </div>
+                    <!-- Candle 3 -->
+                    <div class="relative flex flex-col items-center">
+                        <div id="flame3" class="flame w-4 h-6 mb-1"></div>
+                        <div id="smoke3" class="hidden absolute -top-8 w-3 h-8 bg-slate-300 rounded-full opacity-0"></div>
+                        <div class="w-3 h-10 bg-gradient-to-b from-amber-300 to-amber-400 rounded-t-sm shadow-sm border-x border-amber-400"></div>
                     </div>
                 </div>
-                
-                <!-- Smoke (Hidden initial) -->
-                <div id="candle-smoke" class="hidden absolute top-4 z-20">
-                    <i class="fa-solid fa-cloud text-slate-300 text-2xl smoke-animation"></i>
+
+                <!-- Cake Layers -->
+                <div class="w-48 h-10 bg-pink-200 rounded-t-2xl relative shadow-inner border-t border-white/60">
+                    <div class="absolute inset-x-0 bottom-0 h-3 bg-pink-300 rounded-t-lg"></div>
                 </div>
-
-                <!-- Candle Wick & Body -->
-                <div class="w-1.5 h-4 bg-slate-700 z-10"></div>
-                <div class="w-6 h-16 bg-gradient-to-r from-roseGold-300 via-roseGold-200 to-roseGold-300 rounded-t-sm shadow-inner z-10 border-b-2 border-roseGold-400"></div>
-
-                <!-- Birthday Cake Layers -->
-            <div class="w-36 h-12 bg-roseGold-100 rounded-t-2xl border-b-4 border-roseGold-200 shadow-md relative overflow-hidden flex items-center justify-center">
-                <div class="absolute inset-x-0 top-0 h-3 bg-white/60 rounded-b-full"></div>
-                <span class="text-xs font-semibold text-roseGold-500 tracking-widest uppercase">Isabella</span>
-            </div>
-            <div class="w-48 h-14 bg-amber-50 rounded-t-xl shadow-lg relative border-b-8 border-amber-100 flex items-center justify-center">
-                <div class="absolute inset-x-0 top-0 h-4 bg-roseGold-200/50 rounded-b-full"></div>
-                <span class="text-xs text-amber-800/40">🎂 ✨ 🎂</span>
-            </div>
-        </div>
-
-        <!-- Interactive Status Button -->
-        <button id="blow-btn" onclick="blowOutCandle()" class="mt-4 px-6 py-2.5 bg-roseGold-500 hover:bg-roseGold-600 text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0">
-            <i class="fa-solid fa-wind mr-2"></i> Blow Out Candle
-        </button>
-    </div>
-</section>
-
-<!-- 10 Memory Cards Timeline Section -->
-<main class="max-w-4xl mx-auto px-4 py-8">
-    <h2 class="text-3xl font-extrabold text-slate-900 text-center mb-10 font-cursive text-4xl">
-        10 Precious Memories & Milestones 📸
-    </h2>
-
-    <div class="space-y-12">
-        <!-- Card 1 -->
-        <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
-            <div class="mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #1</span>
-                <h3 class="text-xl font-bold text-slate-800 mt-1">Baby Steps & Early Smiles</h3>
-                <p class="text-slate-600 text-sm mt-1">Always bringing pure joy, laughter, and sunshine into our lives right from the start.</p>
-            </div>
-            <div class="w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 flex items-center justify-center">
-                <img src="Photo1.jpg" alt="Memory 1" class="w-full max-w-full h-auto object-contain rounded-xl block max-h-[80vh]" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo1.jpg+Not+Found';">
-            </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
-            <div class="mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #2</span>
-                <h3 class="text-xl font-bold text-slate-800 mt-1">Growing Up & Exploring</h3>
-                <p class="text-slate-600 text-sm mt-1">Curious, adventurous, and always discovering new things with a big bright smile.</p>
-            </div>
-            <div class="w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 flex items-center justify-center">
-                <img src="Photo2.jpg" alt="Memory 2" class="w-full max-w-full h-auto object-contain rounded-xl block max-h-[80vh]" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo2.jpg+Not+Found';">
-            </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
-            <div class="mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #3</span>
-                <h3 class="text-xl font-bold text-slate-800 mt-1">School Days & Accomplishments</h3>
-                <p class="text-slate-600 text-sm mt-1">Working hard, learning, making great friends, and making us prouder every single day.</p>
-            </div>
-            <div class="w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 flex items-center justify-center">
-                <img src="Photo3.jpg" alt="Memory 3" class="w-full max-w-full h-auto object-contain rounded-xl block max-h-[80vh]" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo3.jpg+Not+Found';">
-            </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
-            <div class="mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #4</span>
-                <h3 class="text-xl font-bold text-slate-800 mt-1">Family Vacations & Adventures</h3>
-                <p class="text-slate-600 text-sm mt-1">Making unforgettable memories on trips, laughing together, and enjoying special family moments.</p>
-            </div>
-            <div class="w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 flex items-center justify-center">
-                <img src="Photo4.jpg" alt="Memory 4" class="w-full max-w-full h-auto object-contain rounded-xl block max-h-[80vh]" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo4.jpg+Not+Found';">
-            </div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
-            <div class="mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #5</span>
-                <h3 class="text-xl font-bold text-slate-800 mt-1">Special Holidays & Celebrations</h3>
-                <p class="text-slate-600 text-sm mt-1">Lighting up every holiday and family gathering with your warmth and vibrant energy.</p>
-            </div>
-            <div class="w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 flex items-center justify-center">
-                <img src="Photo5.jpg" alt="Memory 5" class="w-full max-w-full h-auto object-contain rounded-xl block max-h-[80vh]" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo5.jpg+Not+Found';">
-            </div>
-        </div>
-
-        <!-- Card 6 -->
-        <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
-            <div class="mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #6</span>
-                <h3 class="text-xl font-bold text-slate-800 mt-1">Passions & Favorite Hobbies</h3>
-                <p class="text-slate-600 text-sm mt-1">Diving into creative projects, sports, and hobbies with endless passion and dedication.</p>
-            </div>
-            <div class="w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 flex items-center justify-center">
-                <img src="Photo6.jpg" alt="Memory 6" class="w-full max-w-full h-auto object-contain rounded-xl block max-h-[80vh]" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo6.jpg+Not+Found';">
-            </div>
-        </div>
-
-        <!-- Card 7 -->
-        <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
-            <div class="mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #7</span>
-                <h3 class="text-xl font-bold text-slate-800 mt-1">Unforgettable Good Times</h3>
-                <p class="text-slate-600 text-sm mt-1">The spontaneous fun, jokes, and memorable days that we will treasure forever.</p>
-            </div>
-            <div class="w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 flex items-center justify-center">
-                <img src="Photo7.jpg" alt="Memory 7" class="w-full max-w-full h-auto object-contain rounded-xl block max-h-[80vh]" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo7.jpg+Not+Found';">
-            </div>
-        </div>
-
-        <!-- Card 8 -->
-        <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
-            <div class="mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #8</span>
-                <h3 class="text-xl font-bold text-slate-800 mt-1">Kindness & Caring Heart</h3>
-                <p class="text-slate-600 text-sm mt-1">Always showing so much empathy, love, and support to everyone around you.</p>
-            </div>
-            <div class="w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 flex items-center justify-center">
-                <img src="Photo8.jpg" alt="Memory 8" class="w-full max-w-full h-auto object-contain rounded-xl block max-h-[80vh]" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo8.jpg+Not+Found';">
-            </div>
-        </div>
-
-        <!-- Card 9 -->
-        <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
-            <div class="mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #9</span>
-                <h3 class="text-xl font-bold text-slate-800 mt-1">Shining Bright & Inspiring Us</h3>
-                <p class="text-slate-600 text-sm mt-1">Stepping into every new chapter with strength, kindness, and unbelievable graceful confidence.</p>
-            </div>
-            <div class="w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 flex items-center justify-center">
-                <img src="Photo9.jpg" alt="Memory 9" class="w-full max-w-full h-auto object-contain rounded-xl block max-h-[80vh]" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo9.jpg+Not+Found';">
-            </div>
-        </div>
-
-        <!-- Card 10 -->
-        <div class="bg-white rounded-3xl p-6 shadow-xl border border-roseGold-100 hover:shadow-2xl transition-all duration-300">
-            <div class="mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-roseGold-500">Memory #10</span>
-                <h3 class="text-xl font-bold text-slate-800 mt-1">Here’s to Your Next Chapter!</h3>
-                <p class="text-slate-600 text-sm mt-1">May this coming year bring endless opportunities, incredible success, happiness, and love.</p>
-            </div>
-            <div class="w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 flex items-center justify-center">
-                <img src="Photo10.jpg" alt="Memory 10" class="w-full max-w-full h-auto object-contain rounded-xl block max-h-[80vh]" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ffe6ec/be123c?text=Photo10.jpg+Not+Found';">
-            </div>
-        </div>
-    </div>
-</main>
-
-    <!-- Interactive Friends & Family Guestbook Section -->
-    <section class="max-w-4xl mx-auto px-4 my-12">
-        <div class="bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-2xl border border-roseGold-100">
-            <div class="text-center max-w-xl mx-auto mb-8">
-                <span class="inline-block px-3 py-1 bg-roseGold-100 text-roseGold-600 rounded-full text-xs font-bold tracking-wider uppercase mb-2">
-                    💌 Guestbook Wall
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-cursive">
-                    Leave a Birthday Greeting for Isabella!
-                </h2>
-                <p class="text-slate-500 text-sm mt-1">
-                    Share your birthday wishes, favorite memories, or words of love.
-                </p>
-            </div>
-
-            <!-- Submission Form -->
-            <form id="greeting-form" onsubmit="handleGreetingSubmit(event)" class="bg-roseGold-50/60 p-4 sm:p-6 rounded-2xl border border-roseGold-200/60 mb-10">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                    <div>
-                        <label for="sender-name" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Your Name</label>
-                        <input type="text" id="sender-name" required placeholder="e.g. Sarah & Alex" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-roseGold-400 bg-white text-slate-800 text-sm">
-                    </div>
-                    <div>
-                        <label for="sender-relation" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Relationship / Title (Optional)</label>
-                        <input type="text" id="sender-relation" placeholder="e.g. Bestie, Cousin, Aunt" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-roseGold-400 bg-white text-slate-800 text-sm">
-                    </div>
+                <div class="w-56 h-12 bg-rose-300 rounded-t-xl relative shadow-inner border-t border-white/60">
+                    <div class="absolute inset-x-0 bottom-0 h-3 bg-rose-400 rounded-t-lg"></div>
                 </div>
-                <div class="mb-4">
-                    <label for="greeting-msg" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Your Birthday Message</label>
-                    <textarea id="greeting-msg" required rows="3" placeholder="Wishing you the happiest birthday Isabella!..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-roseGold-400 bg-white text-slate-800 text-sm resize-none"></textarea>
+                <div class="w-64 h-16 bg-purple-200 rounded-t-xl relative shadow-md border-t border-white/60 flex items-center justify-center">
+                    <span class="text-purple-400 text-xs font-bold tracking-widest uppercase">Happy Birthday</span>
                 </div>
-                <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-roseGold-500 hover:bg-roseGold-600 text-white font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-paper-plane"></i> Post Birthday Wish 🎁
+                <!-- Cake Stand -->
+                <div class="w-72 h-4 bg-slate-300 rounded-full shadow-lg"></div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <button onclick="blowOutCandles()" class="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-6 py-3 rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 active:translate-y-0">
+                    💨 Blow Out Candles
                 </button>
-            </form>
+                <button onclick="triggerFireworks()" class="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-semibold px-6 py-3 rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 active:translate-y-0">
+                    🎆 Launch Fireworks!
+                </button>
+            </div>
+        </section>
 
-            <!-- Messages List Container -->
-            <div>
-                <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center justify-between">
-                    <span>Birthday Greetings (<span id="greetings-count">0</span>)</span>
-                    <span class="text-xs text-roseGold-500 font-normal"><i class="fa-solid fa-heart mr-1"></i> Public Wall</span>
-                </h3>
+        <!-- Memory Gallery Section -->
+        <section>
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-slate-800">Cherished Memories 📸</h2>
+                <p class="text-slate-600 mt-2">A look back through your beautiful milestones</p>
+            </div>
 
-                <div id="greetings-container" class="space-y-4 max-h-[500px] overflow-y-auto pr-1">
-                    <!-- Dynamic Greetings injected here -->
+            <!-- Responsive Grid for 10 Photos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Memory #1 -->
+                <div class="glass-card rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="w-full mb-4 bg-slate-100 rounded-2xl overflow-hidden shadow-inner">
+                        <img src="Photo1.jpg" alt="First Milestones" class="w-full h-auto block rounded-2xl" onerror="this.onerror=null; this.src='https://placehold.co/800x600/fecdd3/e11d48?text=Isabella+Photo+1';">
+                    </div>
+                    <div class="p-2">
+                        <div class="text-xs font-bold text-pink-500 uppercase tracking-wider mb-1">Memory #1</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">First Milestones</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-light">Always bringing laughter, energy, and happiness into my life.</p>
+                    </div>
+                </div>
+
+                <!-- Memory #2 -->
+                <div class="glass-card rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="w-full mb-4 bg-slate-100 rounded-2xl overflow-hidden shadow-inner">
+                        <img src="Photo2.jpg" alt="Growing Up So Fast" class="w-full h-auto block rounded-2xl" onerror="this.onerror=null; this.src='https://placehold.co/800x600/fecdd3/e11d48?text=Isabella+Photo+2';">
+                    </div>
+                    <div class="p-2">
+                        <div class="text-xs font-bold text-pink-500 uppercase tracking-wider mb-1">Memory #2</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Growing Up So Fast</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-light">Every single day with you brings new joy and pride.</p>
+                    </div>
+                </div>
+
+                <!-- Memory #3 -->
+                <div class="glass-card rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="w-full mb-4 bg-slate-100 rounded-2xl overflow-hidden shadow-inner">
+                        <img src="Photo3.jpg" alt="School Days & Adventures" class="w-full h-auto block rounded-2xl" onerror="this.onerror=null; this.src='https://placehold.co/800x600/fecdd3/e11d48?text=Isabella+Photo+3';">
+                    </div>
+                    <div class="p-2">
+                        <div class="text-xs font-bold text-pink-500 uppercase tracking-wider mb-1">Memory #3</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">School Days & Adventures</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-light">Watching you learn, explore, and dream big.</p>
+                    </div>
+                </div>
+
+                <!-- Memory #4 -->
+                <div class="glass-card rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="w-full mb-4 bg-slate-100 rounded-2xl overflow-hidden shadow-inner">
+                        <img src="Photo4.jpg" alt="Sweet Celebrations" class="w-full h-auto block rounded-2xl" onerror="this.onerror=null; this.src='https://placehold.co/800x600/fecdd3/e11d48?text=Isabella+Photo+4';">
+                    </div>
+                    <div class="p-2">
+                        <div class="text-xs font-bold text-pink-500 uppercase tracking-wider mb-1">Memory #4</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Sweet Celebrations</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-light">Moments of pure joy, sweetness, and unforgettable smiles.</p>
+                    </div>
+                </div>
+
+                <!-- Memory #5 -->
+                <div class="glass-card rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="w-full mb-4 bg-slate-100 rounded-2xl overflow-hidden shadow-inner">
+                        <img src="Photo5.jpg" alt="Family Traditions" class="w-full h-auto block rounded-2xl" onerror="this.onerror=null; this.src='https://placehold.co/800x600/fecdd3/e11d48?text=Isabella+Photo+5';">
+                    </div>
+                    <div class="p-2">
+                        <div class="text-xs font-bold text-pink-500 uppercase tracking-wider mb-1">Memory #5</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Family Traditions</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-light">Cherished times spent together creating lasting memories.</p>
+                    </div>
+                </div>
+
+                <!-- Memory #6 -->
+                <div class="glass-card rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="w-full mb-4 bg-slate-100 rounded-2xl overflow-hidden shadow-inner">
+                        <img src="Photo6.jpg" alt="Shining Bright" class="w-full h-auto block rounded-2xl" onerror="this.onerror=null; this.src='https://placehold.co/800x600/fecdd3/e11d48?text=Isabella+Photo+6';">
+                    </div>
+                    <div class="p-2">
+                        <div class="text-xs font-bold text-pink-500 uppercase tracking-wider mb-1">Memory #6</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Shining Bright</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-light">Always lighting up every room with your kindness and beauty.</p>
+                    </div>
+                </div>
+
+                <!-- Memory #7 -->
+                <div class="glass-card rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="w-full mb-4 bg-slate-100 rounded-2xl overflow-hidden shadow-inner">
+                        <img src="Photo7.jpg" alt="New Horizons" class="w-full h-auto block rounded-2xl" onerror="this.onerror=null; this.src='https://placehold.co/800x600/fecdd3/e11d48?text=Isabella+Photo+7';">
+                    </div>
+                    <div class="p-2">
+                        <div class="text-xs font-bold text-pink-500 uppercase tracking-wider mb-1">Memory #7</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">New Horizons</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-light">Embracing new journeys and exciting steps forward.</p>
+                    </div>
+                </div>
+
+                <!-- Memory #8 -->
+                <div class="glass-card rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="w-full mb-4 bg-slate-100 rounded-2xl overflow-hidden shadow-inner">
+                        <img src="Photo8.jpg" alt="Unforgettable Smiles" class="w-full h-auto block rounded-2xl" onerror="this.onerror=null; this.src='https://placehold.co/800x600/fecdd3/e11d48?text=Isabella+Photo+8';">
+                    </div>
+                    <div class="p-2">
+                        <div class="text-xs font-bold text-pink-500 uppercase tracking-wider mb-1">Memory #8</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Unforgettable Smiles</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-light">Capturing the warmth, laughter, and special moments.</p>
+                    </div>
+                </div>
+
+                <!-- Memory #9 -->
+                <div class="glass-card rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="w-full mb-4 bg-slate-100 rounded-2xl overflow-hidden shadow-inner">
+                        <img src="Photo9.jpg" alt="Celebrating You" class="w-full h-auto block rounded-2xl" onerror="this.onerror=null; this.src='https://placehold.co/800x600/fecdd3/e11d48?text=Isabella+Photo+9';">
+                    </div>
+                    <div class="p-2">
+                        <div class="text-xs font-bold text-pink-500 uppercase tracking-wider mb-1">Memory #9</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Celebrating You</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-light">Honoring all the wonderful qualities that make you unique.</p>
+                    </div>
+                </div>
+
+                <!-- Memory #10 -->
+                <div class="glass-card rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="w-full mb-4 bg-slate-100 rounded-2xl overflow-hidden shadow-inner">
+                        <img src="Photo10.jpg" alt="Looking Ahead" class="w-full h-auto block rounded-2xl" onerror="this.onerror=null; this.src='https://placehold.co/800x600/fecdd3/e11d48?text=Isabella+Photo+10';">
+                    </div>
+                    <div class="p-2">
+                        <div class="text-xs font-bold text-pink-500 uppercase tracking-wider mb-1">Memory #10</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Looking Ahead</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-light">Excited for all the amazing years and bright opportunities ahead.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Birthday Wishes Guestbook Section -->
+        <section class="glass-card rounded-3xl p-8 sm:p-12 shadow-xl">
+            <div class="max-w-2xl mx-auto">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-slate-800">Leave a Birthday Wish 💌</h2>
+                    <p class="text-slate-600 mt-1">Write your special note for Isabella!</p>
+                </div>
+
+                <form id="guestbookForm" onsubmit="saveGuestbookMessage(event)" class="space-y-4 mb-10">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Your Name</label>
+                            <input type="text" id="guestName" required placeholder="e.g. Grandma Rose" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Relation / Role</label>
+                            <input type="text" id="guestRole" placeholder="e.g. Best Friend, Aunt" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Your Message</label>
+                        <textarea id="guestMessage" required rows="3" placeholder="Wishing you the happiest birthday ever! 💖" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80 resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-semibold py-3.5 rounded-2xl shadow-md transition-all">
+                        Post Birthday Wish ✨
+                    </button>
+                </form>
+
+                <!-- Message List -->
+                <div class="space-y-4" id="messagesContainer">
+                    <!-- Messages dynamically rendered here -->
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Sign-off Footer -->
-    <footer class="text-center mt-12 px-4">
-        <p class="text-2xl font-bold font-cursive text-roseGold-600">
-            With endless love always,
-        </p>
-        <p class="text-3xl font-extrabold text-slate-900 font-cursive mt-1">
-            Love, Dad! ❤️
-        </p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 text-center text-slate-500 text-sm">
+        <p>Created with love for Isabella's Birthday ❤️</p>
     </footer>
 
-    <!-- JavaScript logic -->
+    <!-- JavaScript Logic -->
     <script>
-        // 1. October 27 Countdown Timer Logic
-        function updateCountdown() {
-            const now = new Date();
-            let currentYear = now.getFullYear();
-            
-            // Set Target: October 27th
-            let targetDate = new Date(currentYear, 9, 27, 0, 0, 0); // Month 9 is October (0-indexed)
+        // Web Audio Synthesizer for "Happy Birthday" Melody
+        let audioCtx = null;
+        let isPlayingTune = false;
+        let currentTimeout = null;
 
-            // If Oct 27 has already passed this year, point to next year
-            if (now > targetDate && now.getDate() !== 27) {
-                targetDate = new Date(currentYear + 1, 9, 27, 0, 0, 0);
-            }
+        const melody = [
+            // Phrase 1: Happy Birthday to You
+            { note: 261.63, duration: 0.4 }, // C4
+            { note: 261.63, duration: 0.4 }, // C4
+            { note: 293.66, duration: 0.8 }, // D4
+            { note: 261.63, duration: 0.8 }, // C4
+            { note: 349.23, duration: 0.8 }, // F4
+            { note: 329.63, duration: 1.2 }, // E4
 
-            const diff = targetDate - now;
+            // Phrase 2: Happy Birthday to You
+            { note: 261.63, duration: 0.4 }, // C4
+            { note: 261.63, duration: 0.4 }, // C4
+            { note: 293.66, duration: 0.8 }, // D4
+            { note: 261.63, duration: 0.8 }, // C4
+            { note: 392.00, duration: 0.8 }, // G4
+            { note: 349.23, duration: 1.2 }, // F4
 
-            if (diff <= 0 && now.getDate() === 27) {
-                document.getElementById('cd-days').innerText = "00";
-                document.getElementById('cd-hours').innerText = "00";
-                document.getElementById('cd-minutes').innerText = "00";
-                document.getElementById('cd-seconds').innerText = "00";
-                return;
-            }
+            // Phrase 3: Happy Birthday Dear Isabella
+            { note: 261.63, duration: 0.4 }, // C4
+            { note: 261.63, duration: 0.4 }, // C4
+            { note: 523.25, duration: 0.8 }, // C5
+            { note: 440.00, duration: 0.8 }, // A4
+            { note: 349.23, duration: 0.8 }, // F4
+            { note: 329.63, duration: 0.8 }, // E4
+            { note: 293.66, duration: 1.0 }, // D4
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            // Phrase 4: Happy Birthday to You
+            { note: 466.16, duration: 0.4 }, // Bb4
+            { note: 466.16, duration: 0.4 }, // Bb4
+            { note: 440.00, duration: 0.8 }, // A4
+            { note: 349.23, duration: 0.8 }, // F4
+            { note: 392.00, duration: 0.8 }, // G4
+            { note: 349.23, duration: 1.4 }  // F4
+        ];
 
-            document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
-            document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // 2. Audio Synthesizer for Full 4-Line "Happy Birthday" Melody
-        function playHappyBirthdayMelody() {
+        function playTone(freq, duration) {
+            if (!audioCtx) return;
             try {
-                const AudioContext = window.AudioContext || window.webkitAudioContext;
-                if (!AudioContext) return;
-                const ctx = new AudioContext();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
 
-                // Frequencies for C4 octave
-                const C4 = 261.63, D4 = 293.66, E4 = 329.63, F4 = 349.23, G4 = 392.00, A4 = 440.00, Bb4 = 466.16, C5 = 523.25, F5 = 698.46;
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-                // Full 4 Lines Melody
-                const notes = [
-                    // Line 1: Happy Birthday to you
-                    { note: C4, duration: 0.35 },
-                    { note: C4, duration: 0.35 },
-                    { note: D4, duration: 0.6 },
-                    { note: C4, duration: 0.6 },
-                    { note: F4, duration: 0.6 },
-                    { note: E4, duration: 1.1 },
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration - 0.05);
 
-                    // Line 2: Happy Birthday to you
-                    { note: C4, duration: 0.35 },
-                    { note: C4, duration: 0.35 },
-                    { note: D4, duration: 0.6 },
-                    { note: C4, duration: 0.6 },
-                    { note: G4, duration: 0.6 },
-                    { note: F4, duration: 1.1 },
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
 
-                    // Line 3: Happy Birthday dear Isabella
-                    { note: C4, duration: 0.35 },
-                    { note: C4, duration: 0.35 },
-                    { note: C5, duration: 0.6 },
-                    { note: A4, duration: 0.6 },
-                    { note: F4, duration: 0.6 },
-                    { note: E4, duration: 0.6 },
-                    { note: D4, duration: 0.9 },
-
-                    // Line 4: Happy Birthday to you
-                    { note: Bb4, duration: 0.35 },
-                    { note: Bb4, duration: 0.35 },
-                    { note: A4, duration: 0.6 },
-                    { note: F4, duration: 0.6 },
-                    { note: G4, duration: 0.6 },
-                    { note: F4, duration: 1.2 }
-                ];
-
-                let currentTime = ctx.currentTime + 0.1;
-
-                notes.forEach(item => {
-                    const osc = ctx.createOscillator();
-                    const gain = ctx.createGain();
-
-                    osc.type = 'sine';
-                    osc.frequency.value = item.note;
-
-                    // Envelope for soft dynamic output
-                    gain.gain.setValueAtTime(0.25, currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.001, currentTime + item.duration - 0.05);
-
-                    osc.connect(gain);
-                    gain.connect(ctx.destination);
-
-                    osc.start(currentTime);
-                    osc.stop(currentTime + item.duration);
-
-                    currentTime += item.duration;
-                });
-            } catch (e) {
-                console.log("Audio play blocked or not supported:", e);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {
+                console.error(e);
             }
         }
 
-        // 3. Candle Blow Out Action
-        let candleBlown = false;
-        function blowOutCandle() {
-            if (candleBlown) return;
-            candleBlown = true;
-
-            // Hide flame, show smoke
-            document.getElementById('candle-flame').classList.add('hidden');
-            const smoke = document.getElementById('candle-smoke');
-            smoke.classList.remove('hidden');
-
-            // Update button text
-            const btn = document.getElementById('blow-btn');
-            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Wish Made! ✨';
-            btn.classList.replace('bg-roseGold-500', 'bg-emerald-500');
-
-            // Play Synthesizer Birthday Tune
-            playHappyBirthdayMelody();
-
-            // Trigger Fireworks / Confetti
-            if (typeof confetti === 'function') {
-                confetti({
-                    particleCount: 120,
-                    spread: 80,
-                    origin: { y: 0.6 }
-                });
-                setTimeout(() => {
-                    confetti({
-                        particleCount: 80,
-                        angle: 60,
-                        spread: 55,
-                        origin: { x: 0 }
-                    });
-                    confetti({
-                        particleCount: 80,
-                        angle: 120,
-                        spread: 55,
-                        origin: { x: 1 }
-                    });
-                }, 400);
-            }
-        }
-
-        // 4. Guestbook & Greetings Management
-        function loadGreetings() {
-            const stored = localStorage.getItem('isabella_greetings');
-            let greetings = stored ? JSON.parse(stored) : [];
-            renderGreetings(greetings);
-        }
-
-        function renderGreetings(greetings) {
-            const container = document.getElementById('greetings-container');
-            const countEl = document.getElementById('greetings-count');
-            countEl.innerText = greetings.length;
-
-            if (greetings.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-8 px-4 bg-slate-50 rounded-2xl border border-dashed border-roseGold-200">
-                        <div class="text-3xl mb-2">💌</div>
-                        <p class="text-sm font-semibold text-slate-700">No greetings posted yet!</p>
-                        <p class="text-xs text-slate-500 mt-1">Be the first to post a birthday wish for Isabella using the form above.</p>
-                    </div>
-                `;
+        function playMelodyIndex(index) {
+            if (!isPlayingTune || index >= melody.length) {
+                isPlayingTune = false;
+                document.getElementById('musicBtnText').innerText = "Play Birthday Song 🎵";
                 return;
             }
 
-            container.innerHTML = greetings.map((item) => `
-                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-start gap-3 transition-all hover:bg-roseGold-50/40">
-                    <div class="w-10 h-10 rounded-full bg-roseGold-100 border border-roseGold-200 flex items-center justify-center text-lg flex-shrink-0">
-                        ${item.avatar || '🎂'}
+            const item = melody[index];
+            playTone(item.note, item.duration);
+
+            currentTimeout = setTimeout(() => {
+                playMelodyIndex(index + 1);
+            }, item.duration * 950);
+        }
+
+        function toggleBirthdayTune() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (isPlayingTune) {
+                isPlayingTune = false;
+                if (currentTimeout) clearTimeout(currentTimeout);
+                document.getElementById('musicBtnText').innerText = "Play Birthday Song 🎵";
+            } else {
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                isPlayingTune = true;
+                document.getElementById('musicBtnText').innerText = "Pause Song ⏸️";
+                playMelodyIndex(0);
+            }
+        }
+
+        // Candle Blowing Feature
+        function blowOutCandles() {
+            const flames = [document.getElementById('flame1'), document.getElementById('flame2'), document.getElementById('flame3')];
+            const smokes = [document.getElementById('smoke1'), document.getElementById('smoke2'), document.getElementById('smoke3')];
+
+            flames.forEach((flame, index) => {
+                if (flame) {
+                    flame.classList.add('hidden');
+                    if (smokes[index]) {
+                        smokes[index].classList.remove('hidden');
+                        smokes[index].classList.add('smoke');
+                    }
+                }
+            });
+
+            document.getElementById('cakeInstruction').innerText = "✨ Your wish is on its way! Happy Birthday! ✨";
+            triggerFireworks();
+        }
+
+        // Fireworks & Confetti
+        function triggerFireworks() {
+            const count = 200;
+            const defaults = { origin: { y: 0.7 } };
+
+            function fire(particleRatio, opts) {
+                confetti(Object.assign({}, defaults, opts, {
+                    particleCount: Math.floor(count * particleRatio)
+                }));
+            }
+
+            fire(0.25, { spread: 26, startVelocity: 55 });
+            fire(0.2, { spread: 60 });
+            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+            fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+            fire(0.1, { spread: 120, startVelocity: 45 });
+        }
+
+        // Guestbook LocalStorage Logic
+        function loadGuestbookMessages() {
+            const messages = JSON.parse(localStorage.getItem('isabella_birthday_messages') || '[]');
+            const container = document.getElementById('messagesContainer');
+            
+            if (messages.length === 0) {
+                container.innerHTML = `<p class="text-center text-slate-400 italic text-sm py-4">Be the first to leave a birthday message for Isabella!</p>`;
+                return;
+            }
+
+            container.innerHTML = messages.map(msg => `
+                <div class="bg-white/90 p-4 rounded-2xl shadow-sm border border-rose-100">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="font-bold text-slate-800 text-sm">${escapeHtml(msg.name)}</span>
+                        ${msg.role ? `<span class="text-xs bg-pink-100 text-pink-600 px-2 py-0.5 rounded-full">${escapeHtml(msg.role)}</span>` : ''}
                     </div>
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center justify-between gap-2 mb-1">
-                            <h4 class="text-sm font-bold text-slate-800 truncate">${escapeHtml(item.name)} 
-                                ${item.relation ? `<span class="text-xs font-normal text-roseGold-500 bg-roseGold-100/60 px-2 py-0.5 rounded-full ml-1">${escapeHtml(item.relation)}</span>` : ''}
-                            </h4>
-                            <span class="text-[11px] text-slate-400 flex-shrink-0">${item.time}</span>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${escapeHtml(item.message)}</p>
-                    </div>
+                    <p class="text-slate-600 text-sm font-light leading-relaxed">${escapeHtml(msg.message)}</p>
+                    <span class="text-[10px] text-slate-400 mt-2 block">${msg.date}</span>
                 </div>
             `).join('');
         }
 
-        function handleGreetingSubmit(e) {
+        function saveGuestbookMessage(e) {
             e.preventDefault();
-            const nameInput = document.getElementById('sender-name');
-            const relationInput = document.getElementById('sender-relation');
-            const msgInput = document.getElementById('greeting-msg');
-
-            const name = nameInput.value.trim();
-            const relation = relationInput.value.trim();
-            const message = msgInput.value.trim();
+            const name = document.getElementById('guestName').value.trim();
+            const role = document.getElementById('guestRole').value.trim();
+            const message = document.getElementById('guestMessage').value.trim();
 
             if (!name || !message) return;
 
-            const avatars = ['🥳', '✨', '💖', '🎁', '🎂', '🎉', '🌟'];
-            const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
-
-            const newEntry = {
-                name: name,
-                relation: relation,
-                message: message,
-                time: "Just now",
-                avatar: randomAvatar
+            const messages = JSON.parse(localStorage.getItem('isabella_birthday_messages') || '[]');
+            const newMsg = {
+                name,
+                role,
+                message,
+                date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
             };
 
-            const stored = localStorage.getItem('isabella_greetings');
-            let greetings = stored ? JSON.parse(stored) : [];
-            greetings.unshift(newEntry); // Add new greeting to top
+            messages.unshift(newMsg);
+            localStorage.setItem('isabella_birthday_messages', JSON.stringify(messages));
 
-            localStorage.setItem('isabella_greetings', JSON.stringify(greetings));
-            renderGreetings(greetings);
-
-            // Clear Form
-            nameInput.value = '';
-            relationInput.value = '';
-            msgInput.value = '';
-
-            // Confetti Blast
-            if (typeof confetti === 'function') {
-                confetti({
-                    particleCount: 50,
-                    spread: 60,
-                    origin: { y: 0.8 }
-                });
-            }
+            document.getElementById('guestbookForm').reset();
+            loadGuestbookMessages();
+            triggerFireworks();
         }
 
         function escapeHtml(str) {
             return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
 
-        // Initialize on load
-        window.addEventListener('DOMContentLoaded', () => {
-            loadGreetings();
-        });
+        // Initialize page state
+        window.onload = function() {
+            loadGuestbookMessages();
+        };
     </script>
 </body>
 </html>
