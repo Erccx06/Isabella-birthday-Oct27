@@ -635,5 +635,33 @@
     // Load guestbook on start
     loadGreetings();
   </script>
+  <!-- Firebase Guestbook Integration -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyD50V3dmqaFsI0PPXMwEKxZJ9b0aP3twaA",
+    authDomain: "oct27-82c47.firebaseapp.com",
+    projectId: "oct27-82c47",
+    storageBucket: "oct27-82c47.appspot.com",
+    messagingSenderId: "637522294974",
+    appId: "1:637522294974:web:f44d28ff046a0b53c346ef",
+    measurementId: "G-BL2186HLQX"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  
+  // Expose db and firestore functions globally so your guestbook script can use them
+  window.db = db;
+  window.collection = collection;
+  window.addDoc = addDoc;
+  window.onSnapshot = onSnapshot;
+  window.query = query;
+  window.orderBy = orderBy;
+</script>
 </body>
 </html>
